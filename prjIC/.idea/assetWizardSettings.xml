@@ -19,7 +19,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\etesp_2018\Downloads\botão-sumário.png" />
+                                      <entry key="imageAsset" value="C:\Users\etesp_2018\Desktop\botão-sumário.png" />
+                                      <entry key="outputName" value="ic_arrasta" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="aaaaaa" />
                                     </map>
