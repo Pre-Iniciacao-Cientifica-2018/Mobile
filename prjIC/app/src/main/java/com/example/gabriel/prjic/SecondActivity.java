@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SecondActivity extends AppCompatActivity
@@ -29,11 +30,14 @@ public class SecondActivity extends AppCompatActivity
     private ImageView img = null;
     private ImageView img1 = null;
     DrawerLayout drawer;
+    TextView texto;
     //private float x,y;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_second);
+        texto = findViewById(R.id.texto);
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
@@ -48,6 +52,12 @@ public class SecondActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Btn(0);
+            }
+        });
+        btnGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Btn(2);
             }
         });
 
@@ -99,8 +109,8 @@ public class SecondActivity extends AppCompatActivity
                 drawer.openDrawer(GravityCompat.START);
             break;
             case 2:
-                intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
+
+                startActivity(new Intent(this, medicao.class));
                 break;
 
         }
@@ -147,15 +157,16 @@ public class SecondActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent;
         if (id == R.id.itemCap1) {
-            // Handle the camera action
+            texto.setText(getString(R.string.text));
         } else if (id == R.id.itemCap2) {
+            texto.setText(getString(R.string.texti));
 
         } else if (id == R.id.itemCap3) {
-
+            texto.setText(getString(R.string.text));
         } else if (id == R.id.itemCap4) {
-
+            texto.setText(getString(R.string.texti));
         } else if (id == R.id.itemInicio) {
-
+            texto.setText(getString(R.string.text));
             intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.itemMedReal) {
