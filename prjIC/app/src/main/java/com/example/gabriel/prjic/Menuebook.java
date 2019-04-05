@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class Menuebook extends AppCompatActivity {
-Intent intent;
-        ImageButton btnArrasta, btnGraph, btnHome;
+    Intent intent;
+    ImageButton btnArrasta, btnGraph, btnHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -42,8 +42,8 @@ Intent intent;
         }
         if(i == 2){
             intent = new Intent(this, MedicaoReal.class);
-        startActivity(intent);
-    }
+            startActivity(intent);
+        }
 
 
     }
