@@ -33,7 +33,7 @@
             android:name=".MedicaoReal"
             android:label="@string/title_activity_medicao_real"
             android:theme="@style/AppTheme" 
-            screenOrientation ="portrait"
+            android:screenOrientation ="portrait"
             > 
         
         </activity>
@@ -47,7 +47,7 @@
                 android:value="com.example.gabriel.prjic.MedicaoReal" 
 
             android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"/></activity>
 
     </application>
 
