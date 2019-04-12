@@ -54,19 +54,20 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtTitulo"
+                android:id="@+id/lblTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Dióxido de Carbono"
+            android:text="@string/cap1"
                 android:textAlignment="center"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/lblTexto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:text="@string/textao" />
+                android:text="@string/textCap1" />
 
 
         </LinearLayout>
@@ -74,9 +75,54 @@
     </ScrollView>
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="-10dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/btnGraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_grafico"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="457dp" />
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_home"
+
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="457dp" />
+
+        <ImageButton
+            android:id="@+id/btnArrasta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_arrasta"
+            tools:layout_editor_absoluteX="54dp"    
+            tools:layout_editor_absoluteY="457dp" />
 
 
-        <include layout="@layout/menuebook"/>
+    </LinearLayout>
+
 
 
 

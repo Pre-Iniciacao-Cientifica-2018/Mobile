@@ -27,9 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Menuebook"
-            android:label="@string/title_activity_menuebook" />
+
         <activity
             android:name=".MedicaoReal"
             android:label="@string/title_activity_medicao_real"
