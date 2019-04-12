@@ -26,7 +26,7 @@ public class SecondActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Intent intent;
     ImageButton btnArrasta, btnGraph, btnHome;
-    private LinearLayout lay = null;
+    ScrollView lay = null;
     private ImageView img = null;
     private ImageView img1 = null;
     DrawerLayout drawer;
@@ -71,7 +71,7 @@ public class SecondActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        lay = (LinearLayout) findViewById(R.id.linear);
+        lay =  findViewById(R.id.scrollView2);
         img = (ImageView) findViewById(R.id.imageView5);
         img1 = (ImageView) findViewById(R.id.imageView9);
         lay.setOnTouchListener(new View.OnTouchListener() {
