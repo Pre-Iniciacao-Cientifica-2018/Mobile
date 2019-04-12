@@ -30,7 +30,7 @@ public class SecondActivity extends AppCompatActivity
     private ImageView img = null;
     private ImageView img1 = null;
     DrawerLayout drawer;
-    TextView txtTitulo;
+    TextView txtTitulo, txtTexto;
     //private float x,y;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,8 @@ public class SecondActivity extends AppCompatActivity
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
-        txtTitulo = findViewById(R.id.txtTitulo);
+        txtTitulo = findViewById(R.id.lblTitulo);
+        txtTexto = findViewById(R.id.lblTexto);
         drawer  = (DrawerLayout) findViewById(R.id.drawer_layout);
         btnArrasta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,15 +156,23 @@ public class SecondActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent;
         if (id == R.id.itemCap1) {
+            txtTexto.setText(R.string.textCap1);
             txtTitulo.setText(R.string.cap1);
         } else if (id == R.id.itemCap2) {
 
+
+            txtTexto.setText(R.string.textCap2);
+            txtTitulo.setText(R.string.cap2);
         } else if (id == R.id.itemCap3) {
 
+
+            txtTexto.setText(R.string.textCap3);
+            txtTitulo.setText(R.string.cap3);
         } else if (id == R.id.itemCap4) {
+            txtTexto.setText(R.string.textCap4);
+            txtTitulo.setText(R.string.cap4);
 
         } else if (id == R.id.itemInicio) {
-
             intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.itemMedReal) {

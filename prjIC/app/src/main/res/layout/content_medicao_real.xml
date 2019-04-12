@@ -59,7 +59,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtNumeroPHP"
         android:layout_width="155dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -93,13 +93,16 @@
         app:srcCompat="@drawable/circulo" />
 
     <Button
+
         android:id="@+id/btnAnalise"
         android:layout_width="133dp"
         android:layout_height="wrap_content"
+
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+
         android:background="#00FFFFFF"
         android:text=""
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -107,6 +110,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.956" />
+          <Button
+
+       android:id="@+id/btnAtualiza"
+        android:layout_width="363dp"
+        android:layout_height="94dp"
+
+        android:background="#00000000"
+        android:onClick="getConc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.726" />
+
 
 
 </android.support.constraint.ConstraintLayout>

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gabriel.prjic">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -27,13 +28,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Menuebook"
-            android:label="@string/title_activity_menuebook" />
+
         <activity
             android:name=".MedicaoReal"
             android:label="@string/title_activity_medicao_real"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" 
+            screenOrientation ="portrait"
+            > 
+        
+        </activity>
         <activity
             android:name=".MedicaoParteDois"
             android:label="@string/title_activity_medicao_parte_dois"
@@ -41,8 +44,12 @@
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.gabriel.prjic.MedicaoReal" />
-        </activity>
+                android:value="com.example.gabriel.prjic.MedicaoReal" 
+
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"></activity>
+
     </application>
+
 
 </manifest>
