@@ -14,11 +14,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 public class MedicaoReal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton btnArrasta, btnGraph, btnHome;
     Intent intent;
+    TextView txtNumPHP;
     DrawerLayout drawer;
 
 
@@ -31,7 +40,7 @@ public class MedicaoReal extends AppCompatActivity
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
+        txtNumPHP = findViewById(R.id.txtNumeroPHP);
         btnArrasta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +70,26 @@ public class MedicaoReal extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+    public void getConc(View v) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://conco2.000webhostapp.com/max-mes/";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        txtNumPHP.setText(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                txtNumPHP.setText("That didn't work!");
+            }
+        });
+
+        queue.add(stringRequest);
+    }
+
 
     public void Btn(int i) {
 
@@ -90,6 +119,7 @@ public class MedicaoReal extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

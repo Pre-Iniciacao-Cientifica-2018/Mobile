@@ -117,7 +117,7 @@
 
             android:background="#00FFFFFF"
             app:srcCompat="@drawable/ic_arrasta"
-            tools:layout_editor_absoluteX="54dp"    
+            tools:layout_editor_absoluteX="54dp"
             tools:layout_editor_absoluteY="457dp" />
 
 
