@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class MedicaoReal extends AppCompatActivity
+public class MedicaoParteDois extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton btnArrasta, btnGraph, btnHome;
     Intent intent;
@@ -27,12 +27,12 @@ public class MedicaoReal extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medicao_real);
+        setContentView(R.layout.activity_medicao_parte_dois);
 
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
-        btnAnalise = findViewById(R.id.btnAnalise);
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         btnArrasta.setOnClickListener(new View.OnClickListener() {
@@ -53,12 +53,7 @@ public class MedicaoReal extends AppCompatActivity
                 Btn(2);
             }
         });
-        btnAnalise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Btn(3);
-            }
-        });
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -107,7 +102,7 @@ public class MedicaoReal extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.medicao_real, menu);
+        getMenuInflater().inflate(R.menu.medicao_parte_dois, menu);
         return true;
     }
 
@@ -131,6 +126,7 @@ public class MedicaoReal extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
         if (id == R.id.itemTela) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
@@ -141,6 +137,7 @@ public class MedicaoReal extends AppCompatActivity
         } else if (id == R.id.itemLivro) {
             startActivity(new Intent( getApplicationContext(),SecondActivity.class ));
         }
+
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

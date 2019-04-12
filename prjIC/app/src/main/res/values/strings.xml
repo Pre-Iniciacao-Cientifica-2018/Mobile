@@ -50,5 +50,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_medicao_real">medicaoReal</string>
+    <string name="title_activity_medicao_parte_dois">MedicaoParteDois</string>
 
 </resources>

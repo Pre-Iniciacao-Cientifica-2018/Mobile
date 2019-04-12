@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SecondActivity"
             android:label="@string/title_activity_second"
@@ -33,7 +33,16 @@
         <activity
             android:name=".MedicaoReal"
             android:label="@string/title_activity_medicao_real"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MedicaoParteDois"
+            android:label="@string/title_activity_medicao_parte_dois"
+            android:parentActivityName=".MedicaoReal"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.gabriel.prjic.MedicaoReal" />
+        </activity>
     </application>
 
 </manifest>
