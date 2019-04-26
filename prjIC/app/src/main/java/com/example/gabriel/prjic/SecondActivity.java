@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -31,11 +32,18 @@ public class SecondActivity extends AppCompatActivity
     private ImageView img1 = null;
     DrawerLayout drawer;
     TextView txtTitulo, txtTexto;
+    Button btnE;
+    Button btnD;
+    private String[] textos = new String[4];
+    int cap = 1;
+
     //private float x,y;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        btnE = findViewById(R.id.btnEsquerda);
+        btnD = findViewById(R.id.btnDireita);
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
@@ -60,6 +68,23 @@ public class SecondActivity extends AppCompatActivity
                 Btn(2);
             }
         });
+        btnE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MudaTxt(-1);
+            }
+        });
+        btnD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MudaTxt(1);
+            }
+        });
+
+        textos[0] = getString(R.string.textCap1);
+        textos[1] = getString(R.string.textCap2);
+        textos[2] = getString(R.string.textCap3);
+        textos[3] = getString(R.string.textCap4);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -72,8 +97,8 @@ public class SecondActivity extends AppCompatActivity
 
 
         lay =  findViewById(R.id.scrollView2);
-        img = (ImageView) findViewById(R.id.imageView5);
-        img1 = (ImageView) findViewById(R.id.imageView9);
+        img = findViewById(R.id.imageView5);
+        img1 = findViewById(R.id.imageView9);
         lay.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
@@ -84,9 +109,13 @@ public class SecondActivity extends AppCompatActivity
 
                                 img.setVisibility(View.INVISIBLE);
                                 img1.setVisibility(View.INVISIBLE);
+                                btnE.setVisibility(View.INVISIBLE);
+                                btnD.setVisibility(View.INVISIBLE);
                             } else {
                                 img.setVisibility(View.VISIBLE);
                                 img1.setVisibility(View.VISIBLE);
+                                btnE.setVisibility(View.VISIBLE);
+                                btnD.setVisibility(View.VISIBLE);
                             }
 
                         }
@@ -113,6 +142,17 @@ public class SecondActivity extends AppCompatActivity
                 break;
 
         }
+
+    }
+
+    public void MudaTxt(int i) {
+        cap = cap + i;
+        if(cap>4)
+            cap = 1;
+        if(cap<1)
+            cap = 1;
+        txtTexto.setText(textos[cap-1]);
+
 
     }
 
