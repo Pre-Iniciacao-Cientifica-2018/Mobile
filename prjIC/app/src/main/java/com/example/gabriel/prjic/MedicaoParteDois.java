@@ -15,12 +15,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class MedicaoParteDois extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton btnArrasta, btnGraph, btnHome;
     Intent intent;
     DrawerLayout drawer;
+
     Button btnAnalise;
 
 
@@ -32,6 +34,7 @@ public class MedicaoParteDois extends AppCompatActivity
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
+
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 

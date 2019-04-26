@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MedicaoParteDois"
-    tools:showIn="@layout/app_bar_medicao_parte_dois"
-    >
+    tools:showIn="@layout/app_bar_medicao_parte_dois">
 
 
     <ScrollView
@@ -26,7 +25,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,7 +40,8 @@
                     android:text="Ánalise"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/mont"/>
 
 
             </LinearLayout>
@@ -60,7 +61,8 @@
                     android:text="Média de concentração da última semana"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montb"/>
 
                 <TextView
 
@@ -70,7 +72,8 @@
                     android:text="999.99 ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montb"/>
 
 
             </LinearLayout>
@@ -90,7 +93,8 @@
                     android:text="Média de concentração da última semana"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montb"/>
 
                 <TextView
 
@@ -100,7 +104,8 @@
                     android:text="999.99 ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montb"/>
 
 
             </LinearLayout>
@@ -120,7 +125,8 @@
                     android:text="Média de concentração da última semana"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montb"/>
 
                 <TextView
 
@@ -130,7 +136,8 @@
                     android:text="999.99 ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montb"/>
 
 
             </LinearLayout>
@@ -150,7 +157,8 @@
                     android:text="Média de concentração da última semana"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montb"/>
 
                 <TextView
 
@@ -160,7 +168,8 @@
                     android:text="999.99 ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montb"/>
 
 
             </LinearLayout>
@@ -180,7 +189,8 @@
                     android:text="Média de concentração da última semana"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montb"/>
 
                 <TextView
 
@@ -190,40 +200,19 @@
                     android:text="999.99 ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montb"/>
 
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="43dp"
                 android:layout_marginTop="20dp"
-                android:background="#77aaaaaa"
                 android:orientation="vertical">
 
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:text="Média de concentração da última semana"
-                    android:textAlignment="center"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:text="999.99 ppm"
-                    android:textAlignment="center"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-
             </LinearLayout>
+
 
 
         </LinearLayout>
@@ -234,7 +223,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:layout_marginBottom="-10dp"
         android:background="#ffffff"
         android:gravity="center"

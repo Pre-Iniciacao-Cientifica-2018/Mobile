@@ -1,6 +1,7 @@
 package com.example.gabriel.prjic;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,9 +30,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     public void AbrirPag(int i ){
+
         Intent intent;
         if(i == 1){
             intent = new Intent(getApplicationContext(),SecondActivity.class);
