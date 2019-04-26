@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -91,6 +92,7 @@ public class MedicaoReal extends AppCompatActivity
                     @Override
                     public void onResponse(String response) {
                         try {
+
                             JSONObject jsonObj = new JSONObject(response);
                             txtNumPHP.setText(jsonObj.getJSONObject("data").getString("max-con"));
                         } catch (JSONException e) {
@@ -101,7 +103,7 @@ public class MedicaoReal extends AppCompatActivity
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                txtNumPHP.setText("That didn't work!");
+
             }
         });
 

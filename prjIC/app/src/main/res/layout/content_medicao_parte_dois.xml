@@ -37,11 +37,11 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Ánalise"
+                    android:fontFamily="@font/mont"
+                    android:text="Análise"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/mont"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -58,22 +58,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="Média de concentração da última semana"
+                    android:fontFamily="@font/montb"
+                    android:text="Média de concentração do dia"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/montb"/>
+                    android:textStyle="bold" />
 
                 <TextView
 
+                    android:id="@+id/txtNumero"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="999.99 ppm"
+                    android:fontFamily="@font/montb"
+                    android:text=" ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/montb"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -90,22 +91,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="Média de concentração da última semana"
+                    android:fontFamily="@font/montb"
+                    android:text="Maior concentração da última semana"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/montb"/>
+                    android:textStyle="bold" />
 
                 <TextView
 
+                    android:id="@+id/txtNumero2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="999.99 ppm"
+                    android:fontFamily="@font/montb"
+                    android:text=" ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/montb"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -122,22 +124,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="Média de concentração da última semana"
+                    android:fontFamily="@font/montb"
+                    android:text="Média da concentração da última semana"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/montb"/>
+                    android:textStyle="bold" />
 
                 <TextView
 
+                    android:id="@+id/txtNumero3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="999.99 ppm"
+                    android:fontFamily="@font/montb"
+                    android:text=" ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/montb"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -154,22 +157,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="Média de concentração da última semana"
+                    android:fontFamily="@font/montb"
+                    android:text="Maior concentração do último mês"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/montb"/>
+                    android:textStyle="bold" />
 
                 <TextView
 
+                    android:id="@+id/txtNumero4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="999.99 ppm"
+                    android:fontFamily="@font/montb"
+                    android:text="ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/montb"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -186,22 +190,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="Média de concentração da última semana"
+                    android:fontFamily="@font/montb"
+                    android:text="Média de concentração do último mês"
                     android:textAlignment="center"
                     android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/montb"/>
+                    android:textStyle="bold" />
 
                 <TextView
 
+                    android:id="@+id/txtNumero5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
-                    android:text="999.99 ppm"
+                    android:fontFamily="@font/montb"
+                    android:text="ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/montb"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>

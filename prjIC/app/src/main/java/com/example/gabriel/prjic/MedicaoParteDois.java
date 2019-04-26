@@ -17,12 +17,22 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MedicaoParteDois extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton btnArrasta, btnGraph, btnHome;
     Intent intent;
     DrawerLayout drawer;
-
+    TextView txtNum1, txtNum2, txtNum3, txtNum4, txtNum5;
     Button btnAnalise;
 
 
@@ -34,8 +44,11 @@ public class MedicaoParteDois extends AppCompatActivity
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
-
-
+        txtNum1 = findViewById(R.id.txtNumero);
+        txtNum2 = findViewById(R.id.txtNumero2);
+        txtNum3 = findViewById(R.id.txtNumero3);
+        txtNum4 = findViewById(R.id.txtNumero4);
+        txtNum5 = findViewById(R.id.txtNumero5);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         btnArrasta.setOnClickListener(new View.OnClickListener() {
@@ -57,7 +70,11 @@ public class MedicaoParteDois extends AppCompatActivity
             }
         });
 
-
+        txtNum1.setText(textoPHP(1 )+ txtNum1.getText());
+        txtNum2.setText(textoPHP(2)+ txtNum2.getText());
+        txtNum3.setText(textoPHP(3)+ txtNum3.getText());
+        txtNum4.setText(textoPHP(4)+ txtNum4.getText());
+        txtNum5.setText(textoPHP(5)+ txtNum5.getText());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -68,6 +85,79 @@ public class MedicaoParteDois extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    public static String x = "sdlm";
+
+    public String textoPHP(int i) {
+
+        String url = "";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        if (i == 1) {
+            url = "https://conco2.000webhostapp.com/max-mes/";
+        } else if (i == 2) {
+            url = "https://conco2.000webhostapp.com/max-semana/";
+        } else if (i == 3) {
+            url = "https://conco2.000webhostapp.com/media-semana/";
+        } else if (i == 4) {
+            url = "https://conco2.000webhostapp.com/max-mes/";
+        } else if (i == 5) {
+            url = "https://conco2.000webhostapp.com/media-mes/";
+        } else {
+            url = "https://conco2.000webhostapp.com/max-mes/";
+
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+
+                            JSONObject jsonObj = new JSONObject(response);
+                          x = jsonObj.getJSONObject("data").getString("max-con");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                x = "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            }
+        });
+        queue.add(stringRequest);
+        return x;
+    }
+//    public void PegaMaxSemana(){
+//        String url = "";
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        try {
+//
+//                            JSONObject jsonObj = new JSONObject(response);
+//                            txtNum2.setText(jsonObj.getJSONObject("data").getString("max-con"));
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                x = "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
+//            }
+//        });
+//
+//        queue.add(stringRequest);
+//    }
+//    public void PegaMedSemana(){}
+//    public void PegaMaxMes(){}
+//    public void PegaMedMes(){}
+//    public void PegaMedDia(){}
 
     public void Btn(int i) {
 
@@ -138,9 +228,8 @@ public class MedicaoParteDois extends AppCompatActivity
         } else if (id == R.id.itemSobre) {
 
         } else if (id == R.id.itemLivro) {
-            startActivity(new Intent( getApplicationContext(),SecondActivity.class ));
+            startActivity(new Intent(getApplicationContext(), SecondActivity.class));
         }
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
