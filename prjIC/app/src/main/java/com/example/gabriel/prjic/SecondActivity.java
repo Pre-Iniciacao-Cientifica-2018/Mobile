@@ -35,6 +35,7 @@ public class SecondActivity extends AppCompatActivity
     Button btnE;
     Button btnD;
     private String[] textos = new String[4];
+    private String[] titulos = new String[4];
     int cap = 1;
 
     //private float x,y;
@@ -85,6 +86,11 @@ public class SecondActivity extends AppCompatActivity
         textos[1] = getString(R.string.textCap2);
         textos[2] = getString(R.string.textCap3);
         textos[3] = getString(R.string.textCap4);
+
+        titulos[0] = getString(R.string.cap1);
+        titulos[1] = getString(R.string.cap2);
+        titulos[2] = getString(R.string.cap3);
+        titulos[3] = getString(R.string.cap4);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -152,6 +158,7 @@ public class SecondActivity extends AppCompatActivity
         if(cap<1)
             cap = 1;
         txtTexto.setText(textos[cap-1]);
+        txtTitulo.setText(titulos[cap-1]);
 
 
     }
@@ -198,19 +205,23 @@ public class SecondActivity extends AppCompatActivity
         if (id == R.id.itemCap1) {
             txtTexto.setText(R.string.textCap1);
             txtTitulo.setText(R.string.cap1);
+            cap = 1;
         } else if (id == R.id.itemCap2) {
 
 
             txtTexto.setText(R.string.textCap2);
             txtTitulo.setText(R.string.cap2);
+            cap = 2;
         } else if (id == R.id.itemCap3) {
 
 
             txtTexto.setText(R.string.textCap3);
             txtTitulo.setText(R.string.cap3);
+            cap = 3;
         } else if (id == R.id.itemCap4) {
             txtTexto.setText(R.string.textCap4);
             txtTitulo.setText(R.string.cap4);
+            cap = 4;
 
         } else if (id == R.id.itemInicio) {
             intent = new Intent(this, MainActivity.class);
