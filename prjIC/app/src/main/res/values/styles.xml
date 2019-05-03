@@ -3,13 +3,24 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <style name="CustomAnimationActivity" parent="@android:style/Animation.Activity"
+        >
+        <item name="android:activityOpenEnterAnimation">@anim/vem_da_direita</item>
+        <item name="android:activityCloseEnterAnimation">@anim/sai_pela_esquerda</item>
+        <item name="android:activityOpenExitAnimation">@anim/vem_da_direita</item>
+        <item name="android:activityCloseExitAnimation">@anim/sai_pela_esquerda</item>
+    </style>
     <style name="AppTheme.AppBarOverlay" parent="Theme.AppCompat.Light.NoActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+
+
 
 </resources>

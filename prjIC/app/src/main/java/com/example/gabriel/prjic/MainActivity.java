@@ -12,8 +12,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
         setContentView(R.layout.activity_main);
-
+       // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
 
         Button btnLivroDigital = findViewById(R.id.btnLivroDigital);
         Button btnConcReal = findViewById(R.id.btnConcReal);
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         startActivity(intent);
+       // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
 
     }
 }

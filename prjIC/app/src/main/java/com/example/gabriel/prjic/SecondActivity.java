@@ -42,7 +42,9 @@ public class SecondActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
         setContentView(R.layout.activity_second);
+       // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
         btnE = findViewById(R.id.btnEsquerda);
         btnD = findViewById(R.id.btnDireita);
         btnHome = findViewById(R.id.btnHome);
@@ -235,5 +237,6 @@ public class SecondActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 }
