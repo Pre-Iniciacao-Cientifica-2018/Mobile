@@ -1,6 +1,8 @@
 package com.example.gabriel.prjic;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,7 +35,8 @@ public class MedicaoParteDois extends AppCompatActivity
     ImageButton btnArrasta, btnGraph, btnHome;
     Intent intent;
     DrawerLayout drawer;
-    TextView txtNum1, txtNum2, txtNum3, txtNum4, txtNum5;
+    public TextView txtNumMenorDia, txtNumMaiorDia, txtNumMenorSem, txtNumMediaSem, txtNumMaiorSem, txtNumMenorMes, txtNumMediaMes, txtNumMaiorMes;
+    public int i;
     Button btnAnalise;
 
 
@@ -40,15 +44,20 @@ public class MedicaoParteDois extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicao_parte_dois);
-
+        SincronismoHTTP sincronismoHTTP = new SincronismoHTTP();
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
-        txtNum1 = findViewById(R.id.txtNumero);
-        txtNum2 = findViewById(R.id.txtNumero2);
-        txtNum3 = findViewById(R.id.txtNumero3);
-        txtNum4 = findViewById(R.id.txtNumero4);
-        txtNum5 = findViewById(R.id.txtNumero5);
+
+        txtNumMaiorDia = findViewById(R.id.txtNumeroMaiorDia);
+        txtNumMenorDia = findViewById(R.id.txtNumeroMenorDia);
+        txtNumMaiorSem = findViewById(R.id.txtNumeroMaiorSem);
+        txtNumMediaSem = findViewById(R.id.txtNumeroMediaSem);
+        txtNumMenorSem = findViewById(R.id.txtNumeroMenorSem);
+        txtNumMaiorMes = findViewById(R.id.txtNumeroMaiorMes);
+        txtNumMediaMes = findViewById(R.id.txtNumeroMediaMes);
+        txtNumMenorMes = findViewById(R.id.txtNumeroMenorMes);
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         btnArrasta.setOnClickListener(new View.OnClickListener() {
@@ -70,11 +79,14 @@ public class MedicaoParteDois extends AppCompatActivity
             }
         });
 
-        txtNum1.setText(textoPHP(1 )+ txtNum1.getText());
-        txtNum2.setText(textoPHP(2)+ txtNum2.getText());
-        txtNum3.setText(textoPHP(3)+ txtNum3.getText());
-        txtNum4.setText(textoPHP(4)+ txtNum4.getText());
-        txtNum5.setText(textoPHP(5)+ txtNum5.getText());
+        txtNumMaiorDia.setText(txtNumMaiorDia.getText());
+        txtNumMenorDia.setText(txtNumMenorDia.getText());
+        txtNumMaiorSem.setText(txtNumMaiorSem.getText());
+        txtNumMediaSem.setText(txtNumMediaSem.getText());
+        txtNumMenorSem.setText(txtNumMenorSem.getText());
+        txtNumMaiorMes.setText(txtNumMaiorMes.getText());
+        txtNumMediaMes.setText(txtNumMediaMes.getText());
+        txtNumMenorMes.setText(txtNumMenorMes.getText());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -84,51 +96,237 @@ public class MedicaoParteDois extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        sincronismoHTTP.execute();
+
     }
 
-    public static String x = "sdlm";
 
-    public String textoPHP(int i) {
+    private class SincronismoHTTP extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
 
-        String url = "";
-        RequestQueue queue = Volley.newRequestQueue(this);
-        if (i == 1) {
-            url = "https://conco2.000webhostapp.com/max-mes/";
-        } else if (i == 2) {
-            url = "https://conco2.000webhostapp.com/max-semana/";
-        } else if (i == 3) {
-            url = "https://conco2.000webhostapp.com/media-semana/";
-        } else if (i == 4) {
-            url = "https://conco2.000webhostapp.com/max-mes/";
-        } else if (i == 5) {
-            url = "https://conco2.000webhostapp.com/media-mes/";
-        } else {
-            url = "https://conco2.000webhostapp.com/max-mes/";
+            return null;
+        }
+
+        ProgressDialog pd;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pd = new ProgressDialog(MedicaoParteDois.this);
+            pd.setTitle("Sincronizando");
+            pd.setMessage("Buscando Dados...");
+            pd.setIcon(R.drawable.carregar); //CUIDADO, VER SE IMG EXISTE
+            pd.setCancelable(false);
+            pd.show();
+        }
+
+        StringRequest stringRequest, stringRequest2, stringRequest3, stringRequest4, stringRequest5, stringRequest6, stringRequest7, stringRequest8;
+
+        @Override
+        protected void onPostExecute(Void vd) {
+            super.onPostExecute(vd);
+
+            queue = Volley.newRequestQueue(getApplicationContext());
+
+
+            a();
+            pd.dismiss();
+        }
+
+        public void a() {
+
+            //começo da 1 conexão
+            stringRequest = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/max-dia/",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                JSONObject jsonObj = new JSONObject(response);
+                                txtNumMaiorDia.setText(jsonObj.getJSONObject("data").getString("max-con") + "ppm");
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    txtNumMaiorDia.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
+            });
+            queue.add(stringRequest);
+            // fim do 1
+
+
+            //começo da 2 conexão
+            stringRequest2 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/min-dia/",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                JSONObject jsonObj = new JSONObject(response);
+                                txtNumMenorDia.setText(jsonObj.getJSONObject("data").getString("min-con") + "ppm");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    txtNumMenorDia.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
+            });
+            queue.add(stringRequest2);
+            // fim do 2
+            //começo da 3 conexão
+            stringRequest3 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/max-semana/",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                JSONObject jsonObj = new JSONObject(response);
+                                txtNumMaiorSem.setText(jsonObj.getJSONObject("data").getString("max-con") + "ppm");
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    txtNumMaiorSem.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
+            });
+            queue.add(stringRequest3);
+            // fim do 3
+            //começo da 4 conexão
+            stringRequest4 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/media-semana/",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                JSONObject jsonObj = new JSONObject(response);
+                                txtNumMediaSem.setText(jsonObj.getJSONObject("data").getString("media-semana") + "ppm");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    txtNumMediaSem.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
+            });
+            queue.add(stringRequest4);
+            // fim do 4 dado
+            //Começo da 5
+            stringRequest5 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/min-semana/",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                JSONObject jsonObj = new JSONObject(response);
+                                txtNumMenorSem.setText(jsonObj.getJSONObject("data").getString("min-con") + "ppm");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    txtNumMenorSem.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
+            });
+            queue.add(stringRequest5);
+            //fim 5
+            // Começo da 6
+            stringRequest6 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/max-mes/",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                JSONObject jsonObj = new JSONObject(response);
+                                txtNumMaiorMes.setText(jsonObj.getJSONObject("data").getString("max-con") + "ppm");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    txtNumMaiorMes.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
+            });
+            queue.add(stringRequest6);
+            //fim 6
+            // Começo da 7
+            stringRequest7 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/media-mes/",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                JSONObject jsonObj = new JSONObject(response);
+                                txtNumMediaMes.setText(jsonObj.getJSONObject("data").getString("media-mes") + "ppm");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    txtNumMaiorMes.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
+            });
+            queue.add(stringRequest7);
+            //fim 7
+
+            // Começo da 8
+            stringRequest8 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/min-mes/",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+
+                                JSONObject jsonObj = new JSONObject(response);
+                                txtNumMenorMes.setText(jsonObj.getJSONObject("data").getString("min-con") + "ppm");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    txtNumMenorMes.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
+            });
+            queue.add(stringRequest8);
+            //fim 8
 
         }
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
 
-                            JSONObject jsonObj = new JSONObject(response);
-                          x = jsonObj.getJSONObject("data").getString("max-con");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+        RequestQueue queue;
 
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                x = "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
-            }
-        });
-        queue.add(stringRequest);
-        return x;
+
     }
+
 //    public void PegaMaxSemana(){
 //        String url = "";
 //        RequestQueue queue = Volley.newRequestQueue(this);
@@ -236,4 +434,5 @@ public class MedicaoParteDois extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

@@ -59,19 +59,51 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:fontFamily="@font/montb"
-                    android:text="Média de concentração do dia"
+                    android:text="Maior concentração do Dia"
                     android:textAlignment="center"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
 
-                    android:id="@+id/txtNumero"
+                    android:id="@+id/txtNumeroMaiorDia"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:fontFamily="@font/montb"
-                    android:text=" ppm"
+                    android:text="ppm"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#77aaaaaa"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/montb"
+                    android:text="Menor concentração do Dia"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/txtNumeroMenorDia"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/montb"
+                    android:text="ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -99,7 +131,7 @@
 
                 <TextView
 
-                    android:id="@+id/txtNumero2"
+                    android:id="@+id/txtNumeroMaiorSem"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -132,7 +164,39 @@
 
                 <TextView
 
-                    android:id="@+id/txtNumero3"
+                    android:id="@+id/txtNumeroMediaSem"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/montb"
+                    android:text=" ppm"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#77aaaaaa"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/montb"
+                    android:text="Menor concentração da última semana"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/txtNumeroMenorSem"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -165,7 +229,7 @@
 
                 <TextView
 
-                    android:id="@+id/txtNumero4"
+                    android:id="@+id/txtNumeroMaiorMes"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
@@ -198,7 +262,39 @@
 
                 <TextView
 
-                    android:id="@+id/txtNumero5"
+                    android:id="@+id/txtNumeroMediaMes"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/montb"
+                    android:text="ppm"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#77aaaaaa"
+                android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/montb"
+                    android:text="Menor concentração do último mês"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+
+                    android:id="@+id/txtNumeroMenorMes"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
