@@ -12,9 +12,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
+        overridePendingTransition(R.anim.vem_da_direita, R.anim.sai_pela_esquerda);
         setContentView(R.layout.activity_main);
-       // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
+        // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
 
         Button btnLivroDigital = findViewById(R.id.btnLivroDigital);
         Button btnConcReal = findViewById(R.id.btnConcReal);
@@ -34,20 +34,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void AbrirPag(int i ){
+    public void AbrirPag(int i) {
 
         Intent intent;
-        if(i == 1){
-            intent = new Intent(getApplicationContext(),SecondActivity.class);
+        if (i == 1) {
+            intent = new Intent(getApplicationContext(), SecondActivity.class);
 
 
-        }else{
-            intent = new Intent(getApplicationContext(),MedicaoReal.class);
+        } else {
+            intent = new Intent(getApplicationContext(), MedicaoReal.class);
 
 
         }
         startActivity(intent);
-       // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
+        // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
 
     }
 }

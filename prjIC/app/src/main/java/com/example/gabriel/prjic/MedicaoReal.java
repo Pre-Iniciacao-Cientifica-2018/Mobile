@@ -83,6 +83,7 @@ public class MedicaoReal extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
     public void getConc(View v) {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://conco2.000webhostapp.com/max-mes/";
@@ -180,7 +181,7 @@ public class MedicaoReal extends AppCompatActivity
         } else if (id == R.id.itemSobre) {
 
         } else if (id == R.id.itemLivro) {
-            startActivity(new Intent( getApplicationContext(),SecondActivity.class ));
+            startActivity(new Intent(getApplicationContext(), SecondActivity.class));
         }
 
 

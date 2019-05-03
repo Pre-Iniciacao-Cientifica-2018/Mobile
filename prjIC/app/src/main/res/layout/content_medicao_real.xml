@@ -65,17 +65,17 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="168dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="312dp"
+        android:layout_marginBottom="8dp"
         android:text="000.00"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="30dp"
 
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.972" />
+        app:layout_constraintVertical_bias="0.039" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -95,11 +95,11 @@
     <Button
 
         android:id="@+id/btnAnalise"
-        android:layout_width="133dp"
-        android:layout_height="wrap_content"
+        android:layout_width="251dp"
+        android:layout_height="67dp"
 
         android:layout_marginStart="8dp"
-        android:layout_marginTop="452dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
 
         android:layout_marginBottom="8dp"
@@ -107,11 +107,32 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-          <Button
+        app:layout_constraintVertical_bias="0.873" />
+
+    <Button
+
+        android:id="@+id/btnGrafico"
+        android:layout_width="77dp"
+        android:layout_height="68dp"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+
+        android:layout_marginBottom="8dp"
+        android:background="#00FFFFFF"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.872" />
+
+    <Button
 
        android:id="@+id/btnAtualiza"
         android:layout_width="363dp"

@@ -37,7 +37,6 @@ public class MedicaoParteDois extends AppCompatActivity
     DrawerLayout drawer;
     public TextView txtNumMenorDia, txtNumMaiorDia, txtNumMenorSem, txtNumMediaSem, txtNumMaiorSem, txtNumMenorMes, txtNumMediaMes, txtNumMaiorMes;
     public int i;
-    Button btnAnalise;
 
 
     @Override
@@ -103,6 +102,9 @@ public class MedicaoParteDois extends AppCompatActivity
 
 
     private class SincronismoHTTP extends AsyncTask<Void, Void, Void> {
+        StringRequest stringRequest, stringRequest2, stringRequest3, stringRequest4, stringRequest5, stringRequest6, stringRequest7, stringRequest8;
+        RequestQueue queue;
+
         @Override
         protected Void doInBackground(Void... voids) {
 
@@ -122,7 +124,6 @@ public class MedicaoParteDois extends AppCompatActivity
             pd.show();
         }
 
-        StringRequest stringRequest, stringRequest2, stringRequest3, stringRequest4, stringRequest5, stringRequest6, stringRequest7, stringRequest8;
 
         @Override
         protected void onPostExecute(Void vd) {
@@ -320,9 +321,6 @@ public class MedicaoParteDois extends AppCompatActivity
             //fim 8
 
         }
-
-
-        RequestQueue queue;
 
 
     }

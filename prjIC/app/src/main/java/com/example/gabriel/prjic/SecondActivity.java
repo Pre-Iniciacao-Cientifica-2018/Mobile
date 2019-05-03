@@ -42,9 +42,9 @@ public class SecondActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
+        overridePendingTransition(R.anim.vem_da_direita, R.anim.sai_pela_esquerda);
         setContentView(R.layout.activity_second);
-       // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
+        // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
         btnE = findViewById(R.id.btnEsquerda);
         btnD = findViewById(R.id.btnDireita);
         btnHome = findViewById(R.id.btnHome);
@@ -52,7 +52,7 @@ public class SecondActivity extends AppCompatActivity
         btnGraph = findViewById(R.id.btnGraph);
         txtTitulo = findViewById(R.id.lblTitulo);
         txtTexto = findViewById(R.id.lblTexto);
-        drawer  = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         btnArrasta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,29 +104,29 @@ public class SecondActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        lay =  findViewById(R.id.scrollView2);
+        lay = findViewById(R.id.scrollView2);
         img = findViewById(R.id.imageView5);
         img1 = findViewById(R.id.imageView9);
         lay.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        //    x = event.getX();
-                        //    y = event.getY(); Um dia pode ser util
-                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                            if (img.getVisibility() == View.VISIBLE && img1.getVisibility() == View.VISIBLE) {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                //    x = event.getX();
+                //    y = event.getY(); Um dia pode ser util
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (img.getVisibility() == View.VISIBLE && img1.getVisibility() == View.VISIBLE) {
 
-                                img.setVisibility(View.INVISIBLE);
-                                img1.setVisibility(View.INVISIBLE);
-                                btnE.setVisibility(View.INVISIBLE);
-                                btnD.setVisibility(View.INVISIBLE);
-                            } else {
-                                img.setVisibility(View.VISIBLE);
-                                img1.setVisibility(View.VISIBLE);
-                                btnE.setVisibility(View.VISIBLE);
-                                btnD.setVisibility(View.VISIBLE);
-                            }
+                        img.setVisibility(View.INVISIBLE);
+                        img1.setVisibility(View.INVISIBLE);
+                        btnE.setVisibility(View.INVISIBLE);
+                        btnD.setVisibility(View.INVISIBLE);
+                    } else {
+                        img.setVisibility(View.VISIBLE);
+                        img1.setVisibility(View.VISIBLE);
+                        btnE.setVisibility(View.VISIBLE);
+                        btnD.setVisibility(View.VISIBLE);
+                    }
 
-                        }
+                }
 
                 return true;
             }
@@ -143,7 +143,7 @@ public class SecondActivity extends AppCompatActivity
                 break;
             case 1:
                 drawer.openDrawer(GravityCompat.START);
-            break;
+                break;
             case 2:
                 intent = new Intent(this, MedicaoReal.class);
                 startActivity(intent);
@@ -155,12 +155,12 @@ public class SecondActivity extends AppCompatActivity
 
     public void MudaTxt(int i) {
         cap = cap + i;
-        if(cap>4)
+        if (cap > 4)
             cap = 1;
-        if(cap<1)
+        if (cap < 1)
             cap = 1;
-        txtTexto.setText(textos[cap-1]);
-        txtTitulo.setText(titulos[cap-1]);
+        txtTexto.setText(textos[cap - 1]);
+        txtTitulo.setText(titulos[cap - 1]);
 
 
     }
