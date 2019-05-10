@@ -3,7 +3,6 @@ package com.example.gabriel.prjic;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,11 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SecondActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,9 +38,9 @@ public class SecondActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.vem_da_direita, R.anim.sai_pela_esquerda);
+        overridePendingTransition(R.anim.vem, R.anim.sai);
         setContentView(R.layout.activity_second);
-        // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
+        // overridePendingTransition(R.anim.vem,R.anim.sai);
         btnE = findViewById(R.id.btnEsquerda);
         btnD = findViewById(R.id.btnDireita);
         btnHome = findViewById(R.id.btnHome);
@@ -173,6 +169,7 @@ public class SecondActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            overridePendingTransition(R.anim.back_vem, R.anim.back_sai);
         }
     }
 
@@ -238,5 +235,10 @@ public class SecondActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.vem, R.anim.sai);
+    }
 
 }

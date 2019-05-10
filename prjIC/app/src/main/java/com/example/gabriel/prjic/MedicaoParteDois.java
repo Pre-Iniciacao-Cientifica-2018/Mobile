@@ -42,6 +42,7 @@ public class MedicaoParteDois extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.vem, R.anim.sai);
         setContentView(R.layout.activity_medicao_parte_dois);
         SincronismoHTTP sincronismoHTTP = new SincronismoHTTP();
         btnHome = findViewById(R.id.btnHome);
@@ -385,6 +386,7 @@ public class MedicaoParteDois extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            overridePendingTransition(R.anim.back_vem, R.anim.back_sai);
         }
     }
 
@@ -432,5 +434,12 @@ public class MedicaoParteDois extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.vem, R.anim.sai);
+    }
+
+
 
 }

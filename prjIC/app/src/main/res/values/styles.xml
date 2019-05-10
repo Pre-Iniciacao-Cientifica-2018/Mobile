@@ -9,10 +9,10 @@
     </style>
     <style name="CustomAnimationActivity" parent="@android:style/Animation.Activity"
         >
-        <item name="android:activityOpenEnterAnimation">@anim/vem_da_direita</item>
-        <item name="android:activityCloseEnterAnimation">@anim/sai_pela_esquerda</item>
-        <item name="android:activityOpenExitAnimation">@anim/vem_da_direita</item>
-        <item name="android:activityCloseExitAnimation">@anim/sai_pela_esquerda</item>
+        <item name="android:activityOpenEnterAnimation">@anim/vem</item>
+        <item name="android:activityCloseEnterAnimation">@anim/sai</item>
+        <item name="android:activityOpenExitAnimation">@anim/vem</item>
+        <item name="android:activityCloseExitAnimation">@anim/sai</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="Theme.AppCompat.Light.NoActionBar" />
 

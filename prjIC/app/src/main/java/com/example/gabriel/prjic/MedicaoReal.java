@@ -34,18 +34,21 @@ public class MedicaoReal extends AppCompatActivity
     Intent intent;
     TextView txtNumPHP;
     DrawerLayout drawer;
-    Button btnAnalise;
+    Button btnAnalise,btnGrafico;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.vem, R.anim.sai);
         setContentView(R.layout.activity_medicao_real);
 
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
+        btnGrafico = findViewById(R.id.btnGrafico);
         btnAnalise = findViewById(R.id.btnAnalise);
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         txtNumPHP = findViewById(R.id.txtNumeroPHP);
         btnArrasta.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +73,12 @@ public class MedicaoReal extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Btn(3);
+            }
+        });
+        btnGrafico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Btn(4);
             }
         });
 
@@ -130,6 +139,10 @@ public class MedicaoReal extends AppCompatActivity
                 intent = new Intent(this, MedicaoParteDois.class);
                 startActivity(intent);
                 break;
+            case 4:
+                intent = new Intent(this, WebViewGraph.class);
+                startActivity(intent);
+                break;
 
         }
 
@@ -142,6 +155,7 @@ public class MedicaoReal extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            overridePendingTransition(R.anim.back_vem, R.anim.back_sai);
         }
     }
 
@@ -189,4 +203,11 @@ public class MedicaoReal extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.vem, R.anim.sai);
+    }
+
+
 }

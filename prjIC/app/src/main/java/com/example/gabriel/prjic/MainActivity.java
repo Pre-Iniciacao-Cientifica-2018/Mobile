@@ -1,7 +1,6 @@
 package com.example.gabriel.prjic;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +11,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.vem_da_direita, R.anim.sai_pela_esquerda);
+        overridePendingTransition(R.anim.vem, R.anim.sai);
         setContentView(R.layout.activity_main);
-        // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
+        // overridePendingTransition(R.anim.vem,R.anim.sai);
 
         Button btnLivroDigital = findViewById(R.id.btnLivroDigital);
         Button btnConcReal = findViewById(R.id.btnConcReal);
@@ -47,7 +46,19 @@ public class MainActivity extends AppCompatActivity {
 
         }
         startActivity(intent);
-        // overridePendingTransition(R.anim.vem_da_direita,R.anim.sai_pela_esquerda);
+        // overridePendingTransition(R.anim.vem,R.anim.sai);
 
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.vem, R.anim.sai);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.back_vem, R.anim.back_sai);
     }
 }
