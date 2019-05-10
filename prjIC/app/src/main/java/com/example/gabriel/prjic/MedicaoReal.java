@@ -104,7 +104,7 @@ public class MedicaoReal extends AppCompatActivity
                         try {
 
                             JSONObject jsonObj = new JSONObject(response);
-                            txtNumPHP.setText(jsonObj.getJSONObject("data").getString("max-con"));
+                            txtNumPHP.setText(jsonObj.getJSONObject("data").getString("max-mes"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

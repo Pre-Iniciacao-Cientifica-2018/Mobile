@@ -34,9 +34,11 @@ public class MedicaoParteDois extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton btnArrasta, btnGraph, btnHome;
     Intent intent;
+    public  String nome = "";
+    public TextView t[] = new TextView[8];
     DrawerLayout drawer;
-    public TextView txtNumMenorDia, txtNumMaiorDia, txtNumMenorSem, txtNumMediaSem, txtNumMaiorSem, txtNumMenorMes, txtNumMediaMes, txtNumMaiorMes;
-    public int i;
+    public int i = 0, a=0;
+
 
 
     @Override
@@ -49,14 +51,14 @@ public class MedicaoParteDois extends AppCompatActivity
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
 
-        txtNumMaiorDia = findViewById(R.id.txtNumeroMaiorDia);
-        txtNumMenorDia = findViewById(R.id.txtNumeroMenorDia);
-        txtNumMaiorSem = findViewById(R.id.txtNumeroMaiorSem);
-        txtNumMediaSem = findViewById(R.id.txtNumeroMediaSem);
-        txtNumMenorSem = findViewById(R.id.txtNumeroMenorSem);
-        txtNumMaiorMes = findViewById(R.id.txtNumeroMaiorMes);
-        txtNumMediaMes = findViewById(R.id.txtNumeroMediaMes);
-        txtNumMenorMes = findViewById(R.id.txtNumeroMenorMes);
+        t[0] = findViewById(R.id.txtNumeroMaiorDia);
+        t[1] = findViewById(R.id.txtNumeroMenorDia);
+        t[2] = findViewById(R.id.txtNumeroMaiorSem);
+        t[3] = findViewById(R.id.txtNumeroMediaSem);
+        t[4] = findViewById(R.id.txtNumeroMenorSem);
+        t[5] = findViewById(R.id.txtNumeroMaiorMes);
+        t[6] = findViewById(R.id.txtNumeroMediaMes);
+        t[7] = findViewById(R.id.txtNumeroMenorMes);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -79,14 +81,7 @@ public class MedicaoParteDois extends AppCompatActivity
             }
         });
 
-        txtNumMaiorDia.setText(txtNumMaiorDia.getText());
-        txtNumMenorDia.setText(txtNumMenorDia.getText());
-        txtNumMaiorSem.setText(txtNumMaiorSem.getText());
-        txtNumMediaSem.setText(txtNumMediaSem.getText());
-        txtNumMenorSem.setText(txtNumMenorSem.getText());
-        txtNumMaiorMes.setText(txtNumMaiorMes.getText());
-        txtNumMediaMes.setText(txtNumMediaMes.getText());
-        txtNumMenorMes.setText(txtNumMenorMes.getText());
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -103,7 +98,7 @@ public class MedicaoParteDois extends AppCompatActivity
 
 
     private class SincronismoHTTP extends AsyncTask<Void, Void, Void> {
-        StringRequest stringRequest, stringRequest2, stringRequest3, stringRequest4, stringRequest5, stringRequest6, stringRequest7, stringRequest8;
+        StringRequest stringRequest;
         RequestQueue queue;
 
         @Override
@@ -139,222 +134,42 @@ public class MedicaoParteDois extends AppCompatActivity
 
         public void a() {
 
-            //começo da 1 conexão
-            stringRequest = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/max-dia/",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
+                stringRequest = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/all",
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
 
-                                JSONObject jsonObj = new JSONObject(response);
-                                txtNumMaiorDia.setText(jsonObj.getJSONObject("data").getString("max-con") + "ppm");
+                                    JSONObject jsonObj = new JSONObject(response);
+                                    t[0].setText(jsonObj.getJSONObject("data").getString("max-dia") + " ppm");
+                                    t[1].setText(jsonObj.getJSONObject("data").getString("min-dia") + " ppm");
+                                    t[2].setText(jsonObj.getJSONObject("data").getString("max-semana") + " ppm");
+                                    t[3].setText(jsonObj.getJSONObject("data").getString("media-semana") + " ppm");
+                                    t[4].setText(jsonObj.getJSONObject("data").getString("min-semana") + " ppm");
+                                    t[5].setText(jsonObj.getJSONObject("data").getString("max-mes") + " ppm");
+                                    t[6].setText(jsonObj.getJSONObject("data").getString("media-mes") + " ppm");
+                                    t[7].setText(jsonObj.getJSONObject("data").getString("min-mes") + " ppm");
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
                             }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        t[1].setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                    }
+                });
+                queue.add(stringRequest);
 
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    txtNumMaiorDia.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                }
-            });
-            queue.add(stringRequest);
-            // fim do 1
-
-
-            //começo da 2 conexão
-            stringRequest2 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/min-dia/",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-
-                                JSONObject jsonObj = new JSONObject(response);
-                                txtNumMenorDia.setText(jsonObj.getJSONObject("data").getString("min-con") + "ppm");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    txtNumMenorDia.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                }
-            });
-            queue.add(stringRequest2);
-            // fim do 2
-            //começo da 3 conexão
-            stringRequest3 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/max-semana/",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-
-                                JSONObject jsonObj = new JSONObject(response);
-                                txtNumMaiorSem.setText(jsonObj.getJSONObject("data").getString("max-con") + "ppm");
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    txtNumMaiorSem.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                }
-            });
-            queue.add(stringRequest3);
-            // fim do 3
-            //começo da 4 conexão
-            stringRequest4 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/media-semana/",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-
-                                JSONObject jsonObj = new JSONObject(response);
-                                txtNumMediaSem.setText(jsonObj.getJSONObject("data").getString("media-semana") + "ppm");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    txtNumMediaSem.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                }
-            });
-            queue.add(stringRequest4);
-            // fim do 4 dado
-            //Começo da 5
-            stringRequest5 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/min-semana/",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-
-                                JSONObject jsonObj = new JSONObject(response);
-                                txtNumMenorSem.setText(jsonObj.getJSONObject("data").getString("min-con") + "ppm");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    txtNumMenorSem.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                }
-            });
-            queue.add(stringRequest5);
-            //fim 5
-            // Começo da 6
-            stringRequest6 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/max-mes/",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-
-                                JSONObject jsonObj = new JSONObject(response);
-                                txtNumMaiorMes.setText(jsonObj.getJSONObject("data").getString("max-con") + "ppm");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    txtNumMaiorMes.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                }
-            });
-            queue.add(stringRequest6);
-            //fim 6
-            // Começo da 7
-            stringRequest7 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/media-mes/",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-
-                                JSONObject jsonObj = new JSONObject(response);
-                                txtNumMediaMes.setText(jsonObj.getJSONObject("data").getString("media-mes") + "ppm");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    txtNumMaiorMes.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                }
-            });
-            queue.add(stringRequest7);
-            //fim 7
-
-            // Começo da 8
-            stringRequest8 = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/min-mes/",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-
-                                JSONObject jsonObj = new JSONObject(response);
-                                txtNumMenorMes.setText(jsonObj.getJSONObject("data").getString("min-con") + "ppm");
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    txtNumMenorMes.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                }
-            });
-            queue.add(stringRequest8);
-            //fim 8
 
         }
 
 
     }
 
-//    public void PegaMaxSemana(){
-//        String url = "";
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        try {
-//
-//                            JSONObject jsonObj = new JSONObject(response);
-//                            txtNum2.setText(jsonObj.getJSONObject("data").getString("max-con"));
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                x = "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
-//            }
-//        });
-//
-//        queue.add(stringRequest);
-//    }
-//    public void PegaMedSemana(){}
-//    public void PegaMaxMes(){}
-//    public void PegaMedMes(){}
-//    public void PegaMedDia(){}
 
     public void Btn(int i) {
 
@@ -434,12 +249,12 @@ public class MedicaoParteDois extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.vem, R.anim.sai);
     }
-
 
 
 }
