@@ -64,10 +64,14 @@
 
             <TextView
                 android:id="@+id/lblTexto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
 
                 android:text="@string/textCap1" />
+            <com.github.barteksc.pdfviewer.PDFView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/pdfTexto"></com.github.barteksc.pdfviewer.PDFView>
 
 
         </LinearLayout>

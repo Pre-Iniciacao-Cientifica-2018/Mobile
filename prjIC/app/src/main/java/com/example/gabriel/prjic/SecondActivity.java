@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.github.barteksc.pdfviewer.PDFView;
+
 public class SecondActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Intent intent;
@@ -30,6 +32,7 @@ public class SecondActivity extends AppCompatActivity
     TextView txtTitulo, txtTexto;
     Button btnE;
     Button btnD;
+    PDFView pdfTexto;
     private String[] textos = new String[4];
     private String[] titulos = new String[4];
     int cap = 1;
@@ -48,6 +51,7 @@ public class SecondActivity extends AppCompatActivity
         btnGraph = findViewById(R.id.btnGraph);
         txtTitulo = findViewById(R.id.lblTitulo);
         txtTexto = findViewById(R.id.lblTexto);
+        pdfTexto = findViewById(R.id.pdfTexto);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         btnArrasta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +93,8 @@ public class SecondActivity extends AppCompatActivity
         titulos[1] = getString(R.string.cap2);
         titulos[2] = getString(R.string.cap3);
         titulos[3] = getString(R.string.cap4);
+
+        pdfTexto.fromAsset("p.pdf");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
