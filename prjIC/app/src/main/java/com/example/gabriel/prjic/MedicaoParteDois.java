@@ -2,6 +2,7 @@ package com.example.gabriel.prjic;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,11 +36,11 @@ public class MedicaoParteDois extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton btnArrasta, btnGraph, btnHome;
     Intent intent;
-    public  String nome = "";
+    public String nome = "";
     public TextView t[] = new TextView[8];
     DrawerLayout drawer;
-    public int i = 0, a=0;
-
+    public int i = 0, a = 0;
+    public LinearLayout layoutMaxDia, layoutMinDia, layoutMaxSemana, layoutMedSemana, layoutMinSemana, layoutMaxMes, layoutMedMes, layoutMinMes;
 
 
     @Override
@@ -50,6 +52,15 @@ public class MedicaoParteDois extends AppCompatActivity
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
+        layoutMaxDia = findViewById(R.id.layoutMaxDia);
+        layoutMinDia = findViewById(R.id.layoutMinDia);
+        layoutMaxSemana = findViewById(R.id.layoutMaxSemana);
+        layoutMedSemana = findViewById(R.id.layoutMediaSemana);
+        layoutMinSemana = findViewById(R.id.layoutMinSemana);
+        layoutMaxMes = findViewById(R.id.layoutMaxMes);
+        layoutMedMes = findViewById(R.id.layoutMediaMes);
+        layoutMinMes = findViewById(R.id.layoutMinMes);
+
 
         t[0] = findViewById(R.id.txtNumeroMaiorDia);
         t[1] = findViewById(R.id.txtNumeroMenorDia);
@@ -82,7 +93,6 @@ public class MedicaoParteDois extends AppCompatActivity
         });
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -93,6 +103,7 @@ public class MedicaoParteDois extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         sincronismoHTTP.execute();
+
 
     }
 
@@ -134,35 +145,72 @@ public class MedicaoParteDois extends AppCompatActivity
 
         public void a() {
 
-                stringRequest = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/all",
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
+            stringRequest = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/all",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
 
-                                    JSONObject jsonObj = new JSONObject(response);
-                                    t[0].setText(jsonObj.getJSONObject("data").getString("max-dia") + " ppm");
-                                    t[1].setText(jsonObj.getJSONObject("data").getString("min-dia") + " ppm");
-                                    t[2].setText(jsonObj.getJSONObject("data").getString("max-semana") + " ppm");
-                                    t[3].setText(jsonObj.getJSONObject("data").getString("media-semana") + " ppm");
-                                    t[4].setText(jsonObj.getJSONObject("data").getString("min-semana") + " ppm");
-                                    t[5].setText(jsonObj.getJSONObject("data").getString("max-mes") + " ppm");
-                                    t[6].setText(jsonObj.getJSONObject("data").getString("media-mes") + " ppm");
-                                    t[7].setText(jsonObj.getJSONObject("data").getString("min-mes") + " ppm");
+                                JSONObject jsonObj = new JSONObject(response);
+                                t[0].setText(jsonObj.getJSONObject("data").getString("max-dia"));
+                                t[1].setText(jsonObj.getJSONObject("data").getString("min-dia"));
+                                t[2].setText(jsonObj.getJSONObject("data").getString("max-semana"));
+                                t[3].setText(jsonObj.getJSONObject("data").getString("media-semana"));
+                                t[4].setText(jsonObj.getJSONObject("data").getString("min-semana"));
+                                t[5].setText(jsonObj.getJSONObject("data").getString("max-mes"));
+                                t[6].setText(jsonObj.getJSONObject("data").getString("media-mes"));
+                                t[7].setText(jsonObj.getJSONObject("data").getString("min-mes"));
+                                for (int i = 0; i < t.length; i++) {
 
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    t[i].setText(t[i].getText() + " ppm");
                                 }
+                                double maxDia, minDia, maxSemana, medSemana, minSemana, maxMes, medMes, minMes;
 
+                                maxDia =jsonObj.getJSONObject("data").getDouble("max-dia");
+                                minDia =jsonObj.getJSONObject("data").getDouble("min-dia");
+
+
+                                if (minDia < 9)
+                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#7700ff00"));
+                                 else if (minDia < 11)
+                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77efe999"));
+                                 else if (minDia<13)
+
+
+                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77edcc9c"));
+                                 else if (minDia<15)
+
+                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77e59090"));
+                                 else
+                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77892ac9"));
+                                if (minDia < 9)
+                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#7700ff00"));
+                                else if (minDia < 11)
+                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77efe999"));
+                                else if (minDia<13)
+
+
+                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77edcc9c"));
+                                else if (minDia<15)
+
+                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77e59090"));
+                                else
+                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77892ac9"));
+
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        t[1].setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
-                    }
-                });
-                queue.add(stringRequest);
+
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    t[1].setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
+            });
+            queue.add(stringRequest);
 
 
         }
