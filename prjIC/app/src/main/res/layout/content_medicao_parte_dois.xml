@@ -47,6 +47,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutMaxDia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -78,7 +79,9 @@
 
 
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/layoutMinDia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -112,6 +115,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutMaxSemana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -145,6 +149,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutMediaSemana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -176,7 +181,9 @@
 
 
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/layoutMinSemana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -210,6 +217,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutMaxMes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -243,6 +251,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutMediaMes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -274,7 +283,9 @@
 
 
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/layoutMinMes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
