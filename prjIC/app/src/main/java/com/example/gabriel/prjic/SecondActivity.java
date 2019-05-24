@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -25,14 +26,15 @@ public class SecondActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Intent intent;
     ImageButton btnArrasta, btnGraph, btnHome;
-    ScrollView lay = null;
+
     private ImageView img = null;
     private ImageView img1 = null;
     DrawerLayout drawer;
-    TextView txtTitulo, txtTexto;
+    TextView txtTitulo;
     Button btnE;
     Button btnD;
     PDFView pdfTexto;
+    LinearLayout linear;
     private String[] textos = new String[4];
     private String[] titulos = new String[4];
     int cap = 1;
@@ -50,8 +52,8 @@ public class SecondActivity extends AppCompatActivity
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
         txtTitulo = findViewById(R.id.lblTitulo);
-        txtTexto = findViewById(R.id.lblTexto);
-        pdfTexto = findViewById(R.id.pdfTexto);
+        linear = findViewById(R.id.linear);
+        pdfTexto = (PDFView)findViewById(R.id.pdfTexto);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         btnArrasta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,17 +86,14 @@ public class SecondActivity extends AppCompatActivity
             }
         });
 
-        textos[0] = getString(R.string.textCap1);
-        textos[1] = getString(R.string.textCap2);
-        textos[2] = getString(R.string.textCap3);
-        textos[3] = getString(R.string.textCap4);
+
 
         titulos[0] = getString(R.string.cap1);
         titulos[1] = getString(R.string.cap2);
         titulos[2] = getString(R.string.cap3);
         titulos[3] = getString(R.string.cap4);
 
-        pdfTexto.fromAsset("p.pdf");
+        pdfTexto.fromAsset("p.pdf").load();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -106,12 +105,13 @@ public class SecondActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        lay = findViewById(R.id.scrollView2);
+
         img = findViewById(R.id.imageView5);
         img1 = findViewById(R.id.imageView9);
-        lay.setOnTouchListener(new View.OnTouchListener() {
+        linear.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
                 //    x = event.getX();
                 //    y = event.getY(); Um dia pode ser util
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -134,6 +134,29 @@ public class SecondActivity extends AppCompatActivity
             }
 
         });
+        pdfTexto.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    if (img.getVisibility() == View.VISIBLE && img1.getVisibility() == View.VISIBLE) {
+
+                        img.setVisibility(View.INVISIBLE);
+                        img1.setVisibility(View.INVISIBLE);
+                        btnE.setVisibility(View.INVISIBLE);
+                        btnD.setVisibility(View.INVISIBLE);
+                    } else {
+                        img.setVisibility(View.VISIBLE);
+                        img1.setVisibility(View.VISIBLE);
+                        btnE.setVisibility(View.VISIBLE);
+                        btnD.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+                return true;
+            }
+        });
+
     }
 
     public void Btn(int i) {
@@ -161,8 +184,9 @@ public class SecondActivity extends AppCompatActivity
             cap = 1;
         if (cap < 1)
             cap = 1;
-        txtTexto.setText(textos[cap - 1]);
+
         txtTitulo.setText(titulos[cap - 1]);
+        pdfTexto.fromAsset("p.pdf").defaultPage(cap).load();
 
 
     }
@@ -208,23 +232,22 @@ public class SecondActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent;
         if (id == R.id.itemCap1) {
-            txtTexto.setText(R.string.textCap1);
+
             txtTitulo.setText(R.string.cap1);
             cap = 1;
         } else if (id == R.id.itemCap2) {
 
 
-            txtTexto.setText(R.string.textCap2);
+
             txtTitulo.setText(R.string.cap2);
             cap = 2;
         } else if (id == R.id.itemCap3) {
 
 
-            txtTexto.setText(R.string.textCap3);
             txtTitulo.setText(R.string.cap3);
             cap = 3;
         } else if (id == R.id.itemCap4) {
-            txtTexto.setText(R.string.textCap4);
+
             txtTitulo.setText(R.string.cap4);
             cap = 4;
 
