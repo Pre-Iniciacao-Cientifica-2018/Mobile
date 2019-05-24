@@ -5,22 +5,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.Handler;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -110,41 +106,25 @@ public class MedicaoParteDois extends AppCompatActivity
 
 
     private class SincronismoHTTP extends AsyncTask<Void, Void, Void> {
+        private ProgressDialog dialog = new ProgressDialog(MedicaoParteDois.this);
+
         StringRequest stringRequest;
         RequestQueue queue;
+
+
+        @Override
+        protected void onPreExecute() {
+
+            dialog.show(MedicaoParteDois.this,"oi","flw",false);
+            super.onPreExecute();
+
+
+        }
 
         @Override
         protected Void doInBackground(Void... voids) {
 
-            return null;
-        }
-
-        ProgressDialog pd;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pd = new ProgressDialog(MedicaoParteDois.this);
-            pd.setTitle("Sincronizando");
-            pd.setMessage("Buscando Dados...");
-            pd.setIcon(R.drawable.carregar); //CUIDADO, VER SE IMG EXISTE
-            pd.setCancelable(false);
-            pd.show();
-        }
-
-
-        @Override
-        protected void onPostExecute(Void vd) {
-            super.onPostExecute(vd);
-
             queue = Volley.newRequestQueue(getApplicationContext());
-
-
-            a();
-            pd.dismiss();
-        }
-
-        public void a() {
 
             stringRequest = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/all",
                     new Response.Listener<String>() {
@@ -153,18 +133,18 @@ public class MedicaoParteDois extends AppCompatActivity
                             try {
 
                                 JSONObject jsonObj = new JSONObject(response);
-                                for(int x = 0; x<t.length; x++){
-                                    t[x].setText(jsonObj.getJSONObject("data").getDouble(x+"c") + " ppm");
+                                for (int x = 0; x < t.length; x++) {
+                                    t[x].setText(jsonObj.getJSONObject("data").getDouble(x + "c") + " ppm");
 
-                                    if (jsonObj.getJSONObject("data").getDouble(x+"c") < 9)
+                                    if (jsonObj.getJSONObject("data").getDouble(x + "c") < 9)
                                         linear[x].setBackgroundColor(Color.parseColor("#7700ff00"));
-                                    else if (jsonObj.getJSONObject("data").getDouble(x+"c") < 11)
+                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 11)
                                         linear[x].setBackgroundColor(Color.parseColor("#77efe999"));
-                                    else if (jsonObj.getJSONObject("data").getDouble(x+"c")<13)
+                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 13)
 
 
                                         linear[x].setBackgroundColor(Color.parseColor("#77edcc9c"));
-                                    else if (jsonObj.getJSONObject("data").getDouble(x+"c")<15)
+                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 15)
 
                                         linear[x].setBackgroundColor(Color.parseColor("#77e59090"));
                                     else
@@ -183,7 +163,20 @@ public class MedicaoParteDois extends AppCompatActivity
                     t[1].setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
                 }
             });
+
             queue.add(stringRequest);
+
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void vd) {
+
+
+            if (linear[1].getBackground().equals("#77aaaaaa")) {}
+            else{
+                dialog.dismiss();
+            }
+            super.onPostExecute(vd);
 
 
         }
