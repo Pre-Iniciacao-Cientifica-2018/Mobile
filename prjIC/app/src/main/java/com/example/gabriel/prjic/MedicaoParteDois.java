@@ -36,11 +36,12 @@ public class MedicaoParteDois extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton btnArrasta, btnGraph, btnHome;
     Intent intent;
+
     public String nome = "";
     public TextView t[] = new TextView[8];
     DrawerLayout drawer;
     public int i = 0, a = 0;
-    public LinearLayout layoutMaxDia, layoutMinDia, layoutMaxSemana, layoutMedSemana, layoutMinSemana, layoutMaxMes, layoutMedMes, layoutMinMes;
+    public LinearLayout linear[] = new LinearLayout[8];
 
 
     @Override
@@ -52,14 +53,14 @@ public class MedicaoParteDois extends AppCompatActivity
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
-        layoutMaxDia = findViewById(R.id.layoutMaxDia);
-        layoutMinDia = findViewById(R.id.layoutMinDia);
-        layoutMaxSemana = findViewById(R.id.layoutMaxSemana);
-        layoutMedSemana = findViewById(R.id.layoutMediaSemana);
-        layoutMinSemana = findViewById(R.id.layoutMinSemana);
-        layoutMaxMes = findViewById(R.id.layoutMaxMes);
-        layoutMedMes = findViewById(R.id.layoutMediaMes);
-        layoutMinMes = findViewById(R.id.layoutMinMes);
+        linear[0] = findViewById(R.id.layoutMaxDia);
+        linear[1] = findViewById(R.id.layoutMinDia);
+        linear[2] = findViewById(R.id.layoutMaxSemana);
+        linear[3] = findViewById(R.id.layoutMediaSemana);
+        linear[4] = findViewById(R.id.layoutMinSemana);
+        linear[5] = findViewById(R.id.layoutMaxMes);
+        linear[6] = findViewById(R.id.layoutMediaMes);
+        linear[7] = findViewById(R.id.layoutMinMes);
 
 
         t[0] = findViewById(R.id.txtNumeroMaiorDia);
@@ -152,51 +153,23 @@ public class MedicaoParteDois extends AppCompatActivity
                             try {
 
                                 JSONObject jsonObj = new JSONObject(response);
-                                t[0].setText(jsonObj.getJSONObject("data").getString("max-dia"));
-                                t[1].setText(jsonObj.getJSONObject("data").getString("min-dia"));
-                                t[2].setText(jsonObj.getJSONObject("data").getString("max-semana"));
-                                t[3].setText(jsonObj.getJSONObject("data").getString("media-semana"));
-                                t[4].setText(jsonObj.getJSONObject("data").getString("min-semana"));
-                                t[5].setText(jsonObj.getJSONObject("data").getString("max-mes"));
-                                t[6].setText(jsonObj.getJSONObject("data").getString("media-mes"));
-                                t[7].setText(jsonObj.getJSONObject("data").getString("min-mes"));
-                                for (int i = 0; i < t.length; i++) {
+                                for(int x = 0; x<t.length; x++){
+                                    t[x].setText(jsonObj.getJSONObject("data").getDouble(x+"c") + " ppm");
 
-                                    t[i].setText(t[i].getText() + " ppm");
+                                    if (jsonObj.getJSONObject("data").getDouble(x+"c") < 9)
+                                        linear[x].setBackgroundColor(Color.parseColor("#7700ff00"));
+                                    else if (jsonObj.getJSONObject("data").getDouble(x+"c") < 11)
+                                        linear[x].setBackgroundColor(Color.parseColor("#77efe999"));
+                                    else if (jsonObj.getJSONObject("data").getDouble(x+"c")<13)
+
+
+                                        linear[x].setBackgroundColor(Color.parseColor("#77edcc9c"));
+                                    else if (jsonObj.getJSONObject("data").getDouble(x+"c")<15)
+
+                                        linear[x].setBackgroundColor(Color.parseColor("#77e59090"));
+                                    else
+                                        linear[x].setBackgroundColor(Color.parseColor("#77892ac9"));
                                 }
-                                double maxDia, minDia, maxSemana, medSemana, minSemana, maxMes, medMes, minMes;
-
-                                maxDia =jsonObj.getJSONObject("data").getDouble("max-dia");
-                                minDia =jsonObj.getJSONObject("data").getDouble("min-dia");
-
-
-                                if (minDia < 9)
-                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#7700ff00"));
-                                 else if (minDia < 11)
-                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77efe999"));
-                                 else if (minDia<13)
-
-
-                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77edcc9c"));
-                                 else if (minDia<15)
-
-                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77e59090"));
-                                 else
-                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77892ac9"));
-                                if (minDia < 9)
-                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#7700ff00"));
-                                else if (minDia < 11)
-                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77efe999"));
-                                else if (minDia<13)
-
-
-                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77edcc9c"));
-                                else if (minDia<15)
-
-                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77e59090"));
-                                else
-                                    layoutMaxDia.setBackgroundColor(Color.parseColor("#77892ac9"));
-
 
 
                             } catch (JSONException e) {
