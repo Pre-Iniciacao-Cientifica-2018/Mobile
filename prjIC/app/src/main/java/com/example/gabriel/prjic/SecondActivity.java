@@ -1,6 +1,8 @@
 package com.example.gabriel.prjic;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import android.support.design.widget.NavigationView;
@@ -88,6 +90,8 @@ public class SecondActivity extends AppCompatActivity
 
 
 
+
+
         titulos[0] = getString(R.string.cap1);
         titulos[1] = getString(R.string.cap2);
         titulos[2] = getString(R.string.cap3);
@@ -134,9 +138,12 @@ public class SecondActivity extends AppCompatActivity
             }
 
         });
-        pdfTexto.setOnTouchListener(new View.OnTouchListener() {
+
+        /*pdfTexto.setOnTouchListener(new View.OnTouchListener() {
+
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     if (img.getVisibility() == View.VISIBLE && img1.getVisibility() == View.VISIBLE) {
 
@@ -155,7 +162,10 @@ public class SecondActivity extends AppCompatActivity
 
                 return true;
             }
-        });
+        });*/
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            pdfTexto.zoomTo(3);
+        }
 
     }
 
