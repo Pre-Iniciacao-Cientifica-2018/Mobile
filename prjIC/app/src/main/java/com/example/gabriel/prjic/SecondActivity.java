@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
@@ -29,12 +30,10 @@ public class SecondActivity extends AppCompatActivity
     Intent intent;
     ImageButton btnArrasta, btnGraph, btnHome;
 
-    private ImageView img = null;
-    private ImageView img1 = null;
+
     DrawerLayout drawer;
     TextView txtTitulo;
-    Button btnE;
-    Button btnD;
+
     PDFView pdfTexto;
     LinearLayout linear;
     private String[] textos = new String[4];
@@ -48,8 +47,8 @@ public class SecondActivity extends AppCompatActivity
         overridePendingTransition(R.anim.vem, R.anim.sai);
         setContentView(R.layout.activity_second);
         // overridePendingTransition(R.anim.vem,R.anim.sai);
-        btnE = findViewById(R.id.btnEsquerda);
-        btnD = findViewById(R.id.btnDireita);
+
+
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
@@ -75,18 +74,6 @@ public class SecondActivity extends AppCompatActivity
                 Btn(2);
             }
         });
-        btnE.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MudaTxt(-1);
-            }
-        });
-        btnD.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MudaTxt(1);
-            }
-        });
 
 
 
@@ -96,6 +83,8 @@ public class SecondActivity extends AppCompatActivity
         titulos[1] = getString(R.string.cap2);
         titulos[2] = getString(R.string.cap3);
         titulos[3] = getString(R.string.cap4);
+
+        txtTitulo.setText(titulos[cap-1]);
 
         pdfTexto.fromAsset("p.pdf").load();
 
@@ -110,59 +99,9 @@ public class SecondActivity extends AppCompatActivity
 
 
 
-        img = findViewById(R.id.imageView5);
-        img1 = findViewById(R.id.imageView9);
-        linear.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
 
-                //    x = event.getX();
-                //    y = event.getY(); Um dia pode ser util
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if (img.getVisibility() == View.VISIBLE && img1.getVisibility() == View.VISIBLE) {
 
-                        img.setVisibility(View.INVISIBLE);
-                        img1.setVisibility(View.INVISIBLE);
-                        btnE.setVisibility(View.INVISIBLE);
-                        btnD.setVisibility(View.INVISIBLE);
-                    } else {
-                        img.setVisibility(View.VISIBLE);
-                        img1.setVisibility(View.VISIBLE);
-                        btnE.setVisibility(View.VISIBLE);
-                        btnD.setVisibility(View.VISIBLE);
-                    }
 
-                }
-
-                return true;
-            }
-
-        });
-
-        /*pdfTexto.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if (img.getVisibility() == View.VISIBLE && img1.getVisibility() == View.VISIBLE) {
-
-                        img.setVisibility(View.INVISIBLE);
-                        img1.setVisibility(View.INVISIBLE);
-                        btnE.setVisibility(View.INVISIBLE);
-                        btnD.setVisibility(View.INVISIBLE);
-                    } else {
-                        img.setVisibility(View.VISIBLE);
-                        img1.setVisibility(View.VISIBLE);
-                        btnE.setVisibility(View.VISIBLE);
-                        btnD.setVisibility(View.VISIBLE);
-                    }
-
-                }
-
-                return true;
-            }
-        });*/
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             pdfTexto.zoomTo(3);
         }
@@ -197,6 +136,7 @@ public class SecondActivity extends AppCompatActivity
 
         txtTitulo.setText(titulos[cap - 1]);
         pdfTexto.fromAsset("p.pdf").defaultPage(cap).load();
+
 
 
     }
@@ -245,21 +185,29 @@ public class SecondActivity extends AppCompatActivity
 
             txtTitulo.setText(R.string.cap1);
             cap = 1;
+            pdfTexto.fromAsset("p.pdf").defaultPage(cap-1).load();
+
         } else if (id == R.id.itemCap2) {
 
 
 
             txtTitulo.setText(R.string.cap2);
             cap = 2;
+            pdfTexto.fromAsset("p.pdf").defaultPage(cap-1).load();
+
         } else if (id == R.id.itemCap3) {
 
 
             txtTitulo.setText(R.string.cap3);
             cap = 3;
+            pdfTexto.fromAsset("p.pdf").defaultPage(cap-1).load();
+
         } else if (id == R.id.itemCap4) {
 
             txtTitulo.setText(R.string.cap4);
             cap = 4;
+            pdfTexto.fromAsset("p.pdf").defaultPage(cap-1).load();
+
 
         } else if (id == R.id.itemInicio) {
             intent = new Intent(this, MainActivity.class);
@@ -278,6 +226,20 @@ public class SecondActivity extends AppCompatActivity
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.vem, R.anim.sai);
+    }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        int muda = cap;
+
+        cap = pdfTexto.getCurrentPage();
+
+        if(muda != cap)
+            txtTitulo.setText(titulos[cap]);
+
+
+        return super.dispatchTouchEvent(ev);
     }
 
 }
