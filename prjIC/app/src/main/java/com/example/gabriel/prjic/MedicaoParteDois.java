@@ -51,7 +51,7 @@ public class MedicaoParteDois extends AppCompatActivity
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
 
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar2);
 
         t[0] = findViewById(R.id.txtNumeroMaiorDia);
         t[1] = findViewById(R.id.txtNumeroMenorDia);
@@ -129,8 +129,11 @@ public class MedicaoParteDois extends AppCompatActivity
                                 for (int x = 0; x < t.length; x++) {
                                     t[x].setText(jsonObj.getJSONObject("data").getDouble(x + "c") + " ppm");
 
-                                    if (jsonObj.getJSONObject("data").getDouble(x + "c") < 475)
+                                    if (jsonObj.getJSONObject("data").getDouble(x + "c") < 475){
                                         t[x].setTextColor(Color.parseColor("#75ab5d"));
+
+
+                                    }
                                     else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 650)
                                         t[x].setTextColor(Color.parseColor("#e3cb86"));
 
