@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -37,7 +38,7 @@ public class MedicaoParteDois extends AppCompatActivity
     public TextView t[] = new TextView[8];
     DrawerLayout drawer;
     public int i = 0, a = 0;
-    public LinearLayout linear[] = new LinearLayout[8];
+    ProgressBar progressBar ;
 
 
     @Override
@@ -49,15 +50,8 @@ public class MedicaoParteDois extends AppCompatActivity
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
-        linear[0] = findViewById(R.id.layoutMaxDia);
-        linear[1] = findViewById(R.id.layoutMinDia);
-        linear[2] = findViewById(R.id.layoutMaxSemana);
-        linear[3] = findViewById(R.id.layoutMediaSemana);
-        linear[4] = findViewById(R.id.layoutMinSemana);
-        linear[5] = findViewById(R.id.layoutMaxMes);
-        linear[6] = findViewById(R.id.layoutMediaMes);
-        linear[7] = findViewById(R.id.layoutMinMes);
 
+        progressBar = findViewById(R.id.progressBar);
 
         t[0] = findViewById(R.id.txtNumeroMaiorDia);
         t[1] = findViewById(R.id.txtNumeroMenorDia);
@@ -99,6 +93,8 @@ public class MedicaoParteDois extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
         sincronismoHTTP.execute();
 
 
@@ -106,7 +102,7 @@ public class MedicaoParteDois extends AppCompatActivity
 
 
     private class SincronismoHTTP extends AsyncTask<Void, Void, Void> {
-        private ProgressDialog dialog = new ProgressDialog(MedicaoParteDois.this);
+
 
         StringRequest stringRequest;
         RequestQueue queue;
@@ -114,10 +110,7 @@ public class MedicaoParteDois extends AppCompatActivity
 
         @Override
         protected void onPreExecute() {
-
-            dialog.show(MedicaoParteDois.this,"oi","flw",false);
             super.onPreExecute();
-
 
         }
 
@@ -136,19 +129,20 @@ public class MedicaoParteDois extends AppCompatActivity
                                 for (int x = 0; x < t.length; x++) {
                                     t[x].setText(jsonObj.getJSONObject("data").getDouble(x + "c") + " ppm");
 
-                                    if (jsonObj.getJSONObject("data").getDouble(x + "c") < 9)
-                                        linear[x].setBackgroundColor(Color.parseColor("#7700ff00"));
-                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 11)
-                                        linear[x].setBackgroundColor(Color.parseColor("#77efe999"));
-                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 13)
+                                    if (jsonObj.getJSONObject("data").getDouble(x + "c") < 475)
+                                        t[x].setTextColor(Color.parseColor("#75ab5d"));
+                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 650)
+                                        t[x].setTextColor(Color.parseColor("#e3cb86"));
 
+                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 825)
 
-                                        linear[x].setBackgroundColor(Color.parseColor("#77edcc9c"));
-                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 15)
+                                        t[x].setTextColor(Color.parseColor("#e7b886"));
+                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 1000)
 
-                                        linear[x].setBackgroundColor(Color.parseColor("#77e59090"));
+                                        t[x].setTextColor(Color.parseColor("#c97979"));
                                     else
-                                        linear[x].setBackgroundColor(Color.parseColor("#77892ac9"));
+                                        t[x].setTextColor(Color.parseColor("#a791de"));
+
                                 }
 
 
@@ -160,7 +154,9 @@ public class MedicaoParteDois extends AppCompatActivity
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    t[1].setText("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                    for (int x = 0; x < t.length; x++) {
+                        t[x].setText("Dados não encontrados");
+                    }
                 }
             });
 
@@ -168,16 +164,25 @@ public class MedicaoParteDois extends AppCompatActivity
 
             return null;
         }
+
         @Override
         protected void onPostExecute(Void vd) {
-
-
-            if (linear[1].getBackground().equals("#77aaaaaa")) {}
-            else{
-                dialog.dismiss();
-            }
             super.onPostExecute(vd);
+            new Handler().postDelayed(new Runnable() {
+                /*
+                 * Exibindo splash com um timer.
+                 */
+                @Override
+                public void run() {
+                    // Esse método será executado sempre que o timer acabar
+                    // E inicia a activity principal
 
+                  progressBar.setVisibility(View.INVISIBLE);
+
+                    // Fecha esta activity
+
+                }
+            }, 2000);
 
         }
 
