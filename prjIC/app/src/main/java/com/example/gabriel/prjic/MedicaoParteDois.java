@@ -1,4 +1,4 @@
-package com.example.gabriel.prjic;
+    package com.example.gabriel.prjic;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -145,6 +145,13 @@ public class MedicaoParteDois extends AppCompatActivity
                                         t[x].setTextColor(Color.parseColor("#c97979"));
                                     else
                                         t[x].setTextColor(Color.parseColor("#a791de"));
+                                   if (t[x].getText().equals("ppm")){
+
+                                        progressBar.setVisibility(View.VISIBLE);
+
+                                    }
+                                    progressBar.setVisibility(View.INVISIBLE);
+
 
                                 }
 
@@ -163,6 +170,7 @@ public class MedicaoParteDois extends AppCompatActivity
                 }
             });
 
+
             queue.add(stringRequest);
 
             return null;
@@ -171,21 +179,8 @@ public class MedicaoParteDois extends AppCompatActivity
         @Override
         protected void onPostExecute(Void vd) {
             super.onPostExecute(vd);
-            new Handler().postDelayed(new Runnable() {
-                /*
-                 * Exibindo splash com um timer.
-                 */
-                @Override
-                public void run() {
-                    // Esse método será executado sempre que o timer acabar
-                    // E inicia a activity principal
 
-                  progressBar.setVisibility(View.INVISIBLE);
 
-                    // Fecha esta activity
-
-                }
-            }, 2000);
 
         }
 
