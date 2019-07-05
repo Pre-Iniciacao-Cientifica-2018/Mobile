@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondActivity">
+    tools:context=".Activity_SobreNos">
 
-
-
-    <include layout="@layout/content_second" />
+    <include layout="@layout/content_activity__sobre_nos" />
 
 </android.support.design.widget.CoordinatorLayout>

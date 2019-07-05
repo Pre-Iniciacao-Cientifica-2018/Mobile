@@ -22,7 +22,7 @@ public class WebViewGraph extends AppCompatActivity {
         mWebView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        mWebView.loadUrl("http://conco2.000webhostapp.com/");
+        mWebView.loadUrl("http://conco2.000webhostapp.com/dia-semana-mes_graphs.php");
 
 
 

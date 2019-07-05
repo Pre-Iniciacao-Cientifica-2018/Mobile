@@ -1,4 +1,4 @@
-    package com.example.gabriel.prjic;
+package com.example.gabriel.prjic;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -38,7 +38,7 @@ public class MedicaoParteDois extends AppCompatActivity
     public TextView t[] = new TextView[8];
     DrawerLayout drawer;
     public int i = 0, a = 0;
-    ProgressBar progressBar ;
+    ProgressBar progressBar;
 
 
     @Override
@@ -62,7 +62,7 @@ public class MedicaoParteDois extends AppCompatActivity
         t[6] = findViewById(R.id.txtNumeroMediaMes);
         t[7] = findViewById(R.id.txtNumeroMenorMes);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer =  findViewById(R.id.drawer_layout);
 
         btnArrasta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,11 +94,28 @@ public class MedicaoParteDois extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
         sincronismoHTTP.execute();
 
 
     }
+    public void Btn(int i) {
+
+        switch (i) {
+            case 0:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case 1:
+                drawer.openDrawer(GravityCompat.START);
+                break;
+            case 2:
+                intent = new Intent(this, SecondActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+    }
+
 
 
     private class SincronismoHTTP extends AsyncTask<Void, Void, Void> {
@@ -129,12 +146,11 @@ public class MedicaoParteDois extends AppCompatActivity
                                 for (int x = 0; x < t.length; x++) {
                                     t[x].setText(jsonObj.getJSONObject("data").getDouble(x + "c") + " ppm");
 
-                                    if (jsonObj.getJSONObject("data").getDouble(x + "c") < 475){
+                                    if (jsonObj.getJSONObject("data").getDouble(x + "c") < 475) {
                                         t[x].setTextColor(Color.parseColor("#75ab5d"));
 
 
-                                    }
-                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 650)
+                                    } else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 650)
                                         t[x].setTextColor(Color.parseColor("#e3cb86"));
 
                                     else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 825)
@@ -145,7 +161,8 @@ public class MedicaoParteDois extends AppCompatActivity
                                         t[x].setTextColor(Color.parseColor("#c97979"));
                                     else
                                         t[x].setTextColor(Color.parseColor("#a791de"));
-                                   if (t[x].getText().equals("ppm")){
+
+                                    if (t[x].getText().equals("ppm")) {
 
                                         progressBar.setVisibility(View.VISIBLE);
 
@@ -181,35 +198,12 @@ public class MedicaoParteDois extends AppCompatActivity
             super.onPostExecute(vd);
 
 
-
         }
 
 
     }
 
 
-    public void Btn(int i) {
-
-        switch (i) {
-            case 0:
-                intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-            case 1:
-                drawer.openDrawer(GravityCompat.START);
-                break;
-            case 2:
-                intent = new Intent(this, SecondActivity.class);
-                startActivity(intent);
-                break;
-            case 3:
-                intent = new Intent(this, MedicaoParteDois.class);
-                startActivity(intent);
-                break;
-
-        }
-
-    }
 
     @Override
     public void onBackPressed() {
@@ -254,8 +248,9 @@ public class MedicaoParteDois extends AppCompatActivity
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
         } else if (id == R.id.itemContato) {
-
+            startActivity(new Intent(getApplicationContext(), Activity_SobreNos.class));
         } else if (id == R.id.itemSobre) {
+            startActivity(new Intent(getApplicationContext(), Activity_SobreNos.class));
 
         } else if (id == R.id.itemLivro) {
             startActivity(new Intent(getApplicationContext(), SecondActivity.class));

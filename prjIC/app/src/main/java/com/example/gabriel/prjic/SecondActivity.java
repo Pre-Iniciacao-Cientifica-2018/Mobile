@@ -294,6 +294,9 @@ public class SecondActivity extends AppCompatActivity
         } else if (id == R.id.itemMedReal) {
             intent = new Intent(this, MedicaoReal.class);
             startActivity(intent);
+        }else if (id == R.id.itemSobre){
+
+            startActivity(new Intent(getApplicationContext(), Activity_SobreNos.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
