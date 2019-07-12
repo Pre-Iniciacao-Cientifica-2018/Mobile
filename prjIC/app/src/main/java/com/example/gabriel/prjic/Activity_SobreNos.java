@@ -25,6 +25,7 @@ public class Activity_SobreNos extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.vem, R.anim.sai);
         setContentView(R.layout.activity__sobre_nos);
 
         drawer = findViewById(R.id.drawer_layout);
@@ -142,6 +143,11 @@ public class Activity_SobreNos extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.vem, R.anim.sai);
     }
 
 

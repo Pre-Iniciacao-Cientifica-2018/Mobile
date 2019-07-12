@@ -7,6 +7,30 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Activity_SobreNos"
     tools:showIn="@layout/app_bar_activity__sobre_nos">
+
+
+
+    <TextView
+        android:id="@+id/lblTituloSobreNos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Sobre Nós"
+        android:fontFamily="@font/mont"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -66,5 +90,185 @@
             tools:layout_editor_absoluteY="457dp" />
 
 
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textSobreNos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/montb"
+        android:padding="15dp"
+        android:textSize="13dp"
+        android:text="      O projeto ConCO2 é resultado de um trabalho de pré-inciação-científica idealizado pelo professor Bernardo Luis Rodrigues de Andrade, da POLI-USP, desenvolvido por alunos da Escola Técnica Estadual de São Paulo (ETESP), sob a orientação dos professores......., tendo sido iniciado em setembro de 2018 e desenvolvido ao longo de 1 ano. O principal objetivo do projeto é facilitar o acesso a dados e informações sobre a emissão de gases de efeito estufa, principalmente o CO2, para a população geral. Para isso foi desenvolvido um site, um e-book e uma estação de medição de CO2, colocada na Raia Olímpica da USP (Cidade Universitária) na Marginal Pinheiros."
+        android:justificationMode="inter_word"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lblTituloSobreNos"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <TextView
+        android:id="@+id/lblIntegrantes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/mont"
+        android:text="Integrantes:"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48" />
+
+    <LinearLayout
+        android:layout_width="154dp"
+        android:layout_height="213dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.819">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Bianca Tiemi" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Brendon Angelo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Camilla Rosa Freire" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Ederson Gonzaga" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Gabriel Almeida" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Gabriel Braga" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Gabriel Gomes" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Gustavo Palma" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Henry Castelli" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="151dp"
+        android:layout_height="189dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.774">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Letícia Mendes" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Lucas Costa" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Mariana Toyshima" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Matheus Henrique" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Paula Tamai" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Pedro Buczinski" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Romário Gomes" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Stéfano Kenji" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
