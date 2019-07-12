@@ -248,7 +248,7 @@ public class MedicaoParteDois extends AppCompatActivity
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
         } else if (id == R.id.itemContato) {
-            startActivity(new Intent(getApplicationContext(), Activity_SobreNos.class));
+            startActivity(new Intent(getApplicationContext(), Contatos.class));
         } else if (id == R.id.itemSobre) {
             startActivity(new Intent(getApplicationContext(), Activity_SobreNos.class));
 

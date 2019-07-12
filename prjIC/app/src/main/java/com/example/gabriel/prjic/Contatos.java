@@ -14,83 +14,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.Button;
-import android.widget.ImageButton;
 
-public class Activity_SobreNos extends AppCompatActivity
+public class Contatos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    ImageButton btnArrasta, btnHome, btnGraph, btnLivro;
-    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        overridePendingTransition(R.anim.vem, R.anim.sai);
-        setContentView(R.layout.activity__sobre_nos);
+        setContentView(R.layout.activity_contatos);
 
-        drawer = findViewById(R.id.drawer_layout);
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        btnHome = findViewById(R.id.btnHome);
-        btnLivro = findViewById(R.id.btnLivro);
-        btnGraph = findViewById(R.id.btnGraph);
-        btnArrasta = findViewById(R.id.btnArrasta);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-
-        btnArrasta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Btn(1);
-            }
-        });
-        btnHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Btn(0);
-            }
-        });
-        btnGraph.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Btn(3);
-            }
-        });
-        btnLivro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Btn(2);
-            }
-        });
     }
-    public void Btn(int i) {
-        Intent intent;
-        ;
-        switch (i) {
-            case 0:
-                intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                break;
-            case 1:
-                drawer.openDrawer(GravityCompat.START);
-                break;
-            case 2:
-                intent = new Intent(this, SecondActivity.class);
-                startActivity(intent);
-                break;
-            case 3:
-                intent = new Intent(this, MedicaoReal.class);
-                startActivity(intent);
-                break;
-
-        }
-
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -105,7 +47,7 @@ public class Activity_SobreNos extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity__sobre_nos, menu);
+        getMenuInflater().inflate(R.menu.contatos, menu);
         return true;
     }
 
@@ -129,6 +71,7 @@ public class Activity_SobreNos extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
         if (id == R.id.itemTela) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
@@ -140,15 +83,9 @@ public class Activity_SobreNos extends AppCompatActivity
         } else if (id == R.id.itemLivro) {
             startActivity(new Intent(getApplicationContext(), SecondActivity.class));
         }
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.vem, R.anim.sai);
-    }
-
-
 }

@@ -36,8 +36,8 @@
 
 
             />
-
     </group>
+
 
     <item android:title="">
         <menu>
@@ -54,10 +54,22 @@
 
                 android:title="Sobre" />
             <item
-                android:id="@+id/itemCtt"
+                android:id="@+id/itemContato"
 
                 android:title="Contato" />
         </menu>
     </item>
+    <item android:title="Faça o download do Ebook:">
+        <menu>
+            <item
+                android:id="@+id/itemEpub"
 
+                android:title=" para Epub" />
+            <item
+                android:id="@+id/itemPDF"
+
+                android:title="para PDF" />
+
+        </menu>
+    </item>
 </menu>
