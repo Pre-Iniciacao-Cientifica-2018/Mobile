@@ -38,6 +38,8 @@ public class SecondActivity extends AppCompatActivity
 
     DrawerLayout drawer;
 
+    TextView txtTitulo;
+
 
     PDFView pdfTexto;
     LinearLayout linear, linear2;
@@ -63,7 +65,7 @@ public class SecondActivity extends AppCompatActivity
         btnGraph = findViewById(R.id.btnGraph);
 
         linear = findViewById(R.id.linear);
-
+        txtTitulo = findViewById(R.id.lblTitulo);
         pdfTexto = (PDFView) findViewById(R.id.pdfTexto);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         btnArrasta.setOnClickListener(new View.OnClickListener() {
@@ -85,8 +87,34 @@ public class SecondActivity extends AppCompatActivity
             }
         });
 
+        titulos[0] = getString(R.string.cap1);
+        titulos[1] = getString(R.string.cap2);
+        titulos[2] = getString(R.string.cap3);
+        titulos[3] = getString(R.string.cap4);
+        titulos[4] = getString(R.string.cap5);
+        titulos[5] = getString(R.string.cap6);
+
         pdfTexto.fromAsset("text.pdf").defaultPage(p.getPages()).load();
         //cap = pdfTexto.getCurrentPage();
+
+        if(p.getPages() >= 62){
+            txtTitulo.setText(titulos[5]);
+        }
+        else if(p.getPages() >= 49){
+            txtTitulo.setText(titulos[4]);
+        }
+        else if(p.getPages() >= 17){
+            txtTitulo.setText(titulos[3]);
+        }
+        else if(p.getPages() >= 9){
+            txtTitulo.setText(titulos[2]);
+        }
+        else if(p.getPages() >= 6){
+            txtTitulo.setText(titulos[1]);
+        }
+        else if(p.getPages() <= 5){
+            txtTitulo.setText(titulos[0]);
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -138,7 +166,7 @@ public class SecondActivity extends AppCompatActivity
         if (cap < 1)
             cap = 1;
 
-
+        //txtTitulo.setText(titulos[cap - 1]);
         pdfTexto.fromAsset("text.pdf").defaultPage(cap).load();
 
 
@@ -191,6 +219,7 @@ public class SecondActivity extends AppCompatActivity
 
 
             cap = 1;
+            txtTitulo.setText(R.string.cap1);
             pdfTexto.fromAsset("text.pdf").defaultPage(5).load();
             p.setPages(pdfTexto.getCurrentPage());
             pdfTexto.zoomTo(1.2f);
@@ -202,6 +231,7 @@ public class SecondActivity extends AppCompatActivity
         } else if (id == R.id.itemCap2) {
 
             cap = 2;
+            txtTitulo.setText(R.string.cap2);
             pdfTexto.fromAsset("text.pdf").defaultPage(6).load();
             p.setPages(6);
             pdfTexto.zoomTo(1.2f);
@@ -214,6 +244,7 @@ public class SecondActivity extends AppCompatActivity
 
 
             cap = 3;
+            txtTitulo.setText(R.string.cap3);
             pdfTexto.fromAsset("text.pdf").defaultPage(9).load();
             p.setPages(9);
             pdfTexto.zoomTo(1.2f);
@@ -226,6 +257,7 @@ public class SecondActivity extends AppCompatActivity
 
 
             cap = 4;
+            txtTitulo.setText(R.string.cap4);
             pdfTexto.fromAsset("text.pdf").defaultPage(17).load();
             p.setPages(17);
             pdfTexto.zoomTo(1.2f);
@@ -238,7 +270,8 @@ public class SecondActivity extends AppCompatActivity
         } else if (id == R.id.itemCap5) {
 
 
-            cap = 4;
+            cap = 5;
+            txtTitulo.setText(R.string.cap5);
             pdfTexto.fromAsset("text.pdf").defaultPage(49).load();
             p.setPages(49);
             pdfTexto.zoomTo(1.2f);
@@ -251,7 +284,8 @@ public class SecondActivity extends AppCompatActivity
         } else if (id == R.id.itemCap6) {
 
 
-            cap = 4;
+            cap = 6;
+            txtTitulo.setText(R.string.cap6);
             pdfTexto.fromAsset("text.pdf").defaultPage(62).load();
             p.setPages(62);
             pdfTexto.zoomTo(1.2f);
@@ -308,6 +342,24 @@ public class SecondActivity extends AppCompatActivity
 
         // if(muda != cap)
         //    setPage(cap);
+        if(cap >= 62){
+            txtTitulo.setText(titulos[5]);
+        }
+        else if(cap >= 49){
+            txtTitulo.setText(titulos[4]);
+        }
+        else if(cap >= 17){
+            txtTitulo.setText(titulos[3]);
+        }
+        else if(cap >= 9){
+            txtTitulo.setText(titulos[2]);
+        }
+        else if(cap >= 6){
+            txtTitulo.setText(titulos[1]);
+        }
+        else if(cap <= 5){
+            txtTitulo.setText(titulos[0]);
+        }
 
         p.setPages(pdfTexto.getCurrentPage());
 

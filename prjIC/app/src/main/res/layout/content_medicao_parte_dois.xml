@@ -9,7 +9,6 @@
     tools:showIn="@layout/app_bar_medicao_parte_dois">
 
 
-
     <ScrollView
         android:id="@+id/viewPrincipal"
         android:layout_width="match_parent"
@@ -20,14 +19,13 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,12 +70,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:background="@drawable/fundo"
                     android:fontFamily="@font/montb"
                     android:text="ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/fundo"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -142,12 +140,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:background="@drawable/fundo"
                     android:fontFamily="@font/montb"
                     android:text=" ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/fundo"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -177,12 +175,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:background="@drawable/fundo"
                     android:fontFamily="@font/montb"
                     android:text=" ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/fundo"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -212,12 +210,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:background="@drawable/fundo"
                     android:fontFamily="@font/montb"
                     android:text=" ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/fundo"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -247,12 +245,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:background="@drawable/fundo"
                     android:fontFamily="@font/montb"
                     android:text="ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/fundo"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -282,12 +280,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:background="@drawable/fundo"
                     android:fontFamily="@font/montb"
                     android:text="ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/fundo"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
@@ -317,15 +315,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:background="@drawable/fundo"
                     android:fontFamily="@font/montb"
                     android:text="ppm"
                     android:textAlignment="center"
                     android:textSize="25sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/fundo"/>
+                    android:textStyle="bold" />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
@@ -333,7 +332,6 @@
                 android:orientation="vertical">
 
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -344,18 +342,14 @@
     <LinearLayout
         android:id="@+id/legendaLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="-10dp"
-        android:background="#ffffff"
 
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/imageView4"
