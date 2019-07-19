@@ -9,5 +9,5 @@ public class Pages{
         Pages.pages = pages;
     }
 
-    public static int pages = 2;
+    public static int pages = 0;
 }

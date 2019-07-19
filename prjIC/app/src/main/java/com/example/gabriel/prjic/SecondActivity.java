@@ -45,7 +45,7 @@ public class SecondActivity extends AppCompatActivity
     LinearLayout linear, linear2;
 
     private String[] titulos = new String[6];
-    int page = 2;
+    int page = 0;
     Pages p = new Pages();
     long queueid;
     int cap = 1;
@@ -97,22 +97,22 @@ public class SecondActivity extends AppCompatActivity
         pdfTexto.fromAsset("text.pdf").defaultPage(p.getPages()).load();
         //cap = pdfTexto.getCurrentPage();
 
-        if(p.getPages() >= 62){
+        if(p.getPages() >= 122){
             txtTitulo.setText(titulos[5]);
         }
-        else if(p.getPages() >= 49){
+        else if(p.getPages() >= 81){
             txtTitulo.setText(titulos[4]);
         }
-        else if(p.getPages() >= 17){
+        else if(p.getPages() >= 28){
             txtTitulo.setText(titulos[3]);
         }
-        else if(p.getPages() >= 9){
+        else if(p.getPages() >= 15){
             txtTitulo.setText(titulos[2]);
         }
-        else if(p.getPages() >= 6){
+        else if(p.getPages() >= 9){
             txtTitulo.setText(titulos[1]);
         }
-        else if(p.getPages() <= 5){
+        else if(p.getPages() <= 8){
             txtTitulo.setText(titulos[0]);
         }
 
@@ -125,8 +125,8 @@ public class SecondActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        pdfTexto.zoomTo(1.2f);
-        pdfTexto.setMinZoom(1.2f);
+        pdfTexto.zoomTo(1);
+        pdfTexto.setMinZoom(1);
         pdfTexto.setMidZoom(2);
 
 
@@ -220,9 +220,10 @@ public class SecondActivity extends AppCompatActivity
 
             cap = 1;
             txtTitulo.setText(R.string.cap1);
-            pdfTexto.fromAsset("text.pdf").defaultPage(5).load();
-            p.setPages(pdfTexto.getCurrentPage());
-            pdfTexto.zoomTo(1.2f);
+            pdfTexto.fromAsset("text.pdf").defaultPage(6).load();
+
+            p.setPages(6);
+            pdfTexto.zoomTo(1);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 pdfTexto.zoomTo(3);
 
@@ -232,9 +233,9 @@ public class SecondActivity extends AppCompatActivity
 
             cap = 2;
             txtTitulo.setText(R.string.cap2);
-            pdfTexto.fromAsset("text.pdf").defaultPage(6).load();
-            p.setPages(6);
-            pdfTexto.zoomTo(1.2f);
+            pdfTexto.fromAsset("text.pdf").defaultPage(9).load();
+            p.setPages(9);
+            pdfTexto.zoomTo(1);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 pdfTexto.zoomTo(3);
 
@@ -245,9 +246,9 @@ public class SecondActivity extends AppCompatActivity
 
             cap = 3;
             txtTitulo.setText(R.string.cap3);
-            pdfTexto.fromAsset("text.pdf").defaultPage(9).load();
-            p.setPages(9);
-            pdfTexto.zoomTo(1.2f);
+            pdfTexto.fromAsset("text.pdf").defaultPage(15).load();
+            p.setPages(15);
+            pdfTexto.zoomTo(1);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 pdfTexto.zoomTo(3);
 
@@ -258,9 +259,9 @@ public class SecondActivity extends AppCompatActivity
 
             cap = 4;
             txtTitulo.setText(R.string.cap4);
-            pdfTexto.fromAsset("text.pdf").defaultPage(17).load();
-            p.setPages(17);
-            pdfTexto.zoomTo(1.2f);
+            pdfTexto.fromAsset("text.pdf").defaultPage(28).load();
+            p.setPages(28);
+            pdfTexto.zoomTo(1);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 pdfTexto.zoomTo(3);
 
@@ -272,9 +273,9 @@ public class SecondActivity extends AppCompatActivity
 
             cap = 5;
             txtTitulo.setText(R.string.cap5);
-            pdfTexto.fromAsset("text.pdf").defaultPage(49).load();
-            p.setPages(49);
-            pdfTexto.zoomTo(1.2f);
+            pdfTexto.fromAsset("text.pdf").defaultPage(81).load();
+            p.setPages(81);
+            pdfTexto.zoomTo(1);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 pdfTexto.zoomTo(3);
 
@@ -286,9 +287,9 @@ public class SecondActivity extends AppCompatActivity
 
             cap = 6;
             txtTitulo.setText(R.string.cap6);
-            pdfTexto.fromAsset("text.pdf").defaultPage(62).load();
-            p.setPages(62);
-            pdfTexto.zoomTo(1.2f);
+            pdfTexto.fromAsset("text.pdf").defaultPage(122).load();
+            p.setPages(122);
+            pdfTexto.zoomTo(1);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 pdfTexto.zoomTo(3);
 
@@ -342,22 +343,22 @@ public class SecondActivity extends AppCompatActivity
 
         // if(muda != cap)
         //    setPage(cap);
-        if(cap >= 62){
+        if(cap >= 122){
             txtTitulo.setText(titulos[5]);
         }
-        else if(cap >= 49){
+        else if(cap >= 81){
             txtTitulo.setText(titulos[4]);
         }
-        else if(cap >= 17){
+        else if(cap >= 28){
             txtTitulo.setText(titulos[3]);
         }
-        else if(cap >= 9){
+        else if(cap >= 15){
             txtTitulo.setText(titulos[2]);
         }
-        else if(cap >= 6){
+        else if(cap >= 9){
             txtTitulo.setText(titulos[1]);
         }
-        else if(cap <= 5){
+        else if(cap <= 8){
             txtTitulo.setText(titulos[0]);
         }
 
