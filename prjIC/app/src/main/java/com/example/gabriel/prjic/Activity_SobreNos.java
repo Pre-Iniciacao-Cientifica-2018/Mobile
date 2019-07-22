@@ -69,7 +69,7 @@ public class Activity_SobreNos extends AppCompatActivity
     }
     public void Btn(int i) {
         Intent intent;
-        ;
+
         switch (i) {
             case 0:
                 intent = new Intent(this, MainActivity.class);

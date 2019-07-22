@@ -14,25 +14,78 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.ImageButton;
 
 public class Contatos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+ ImageButton btnArrasta, btnHome, btnGraph, btnLivro;
+ DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.vem, R.anim.sai);
         setContentView(R.layout.activity_contatos);
 
+        btnHome = findViewById(R.id.btnHome);
+        btnLivro = findViewById(R.id.btnLivro);
+        btnGraph = findViewById(R.id.btnGraph);
+        btnArrasta = findViewById(R.id.btnArrasta);
 
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+       drawer= findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+        btnArrasta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Btn(1);
+            }
+        });
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Btn(0);
+            }
+        });
+        btnGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Btn(3);
+            }
+        });
+        btnLivro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Btn(2);
+            }
+        });
         navigationView.setNavigationItemSelectedListener(this);
+    }
+    public void Btn(int i) {
+        Intent intent;
+
+        switch (i) {
+            case 0:
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case 1:
+                drawer.openDrawer(GravityCompat.START);
+                break;
+            case 2:
+                intent = new Intent(this, SecondActivity.class);
+                startActivity(intent);
+                break;
+            case 3:
+                intent = new Intent(this, MedicaoReal.class);
+                startActivity(intent);
+                break;
+
+        }
+
     }
 
     @Override

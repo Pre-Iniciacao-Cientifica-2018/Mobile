@@ -1,6 +1,8 @@
 package com.example.gabriel.prjic;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -18,6 +20,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,7 +36,6 @@ public class MedicaoParteDois extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton btnArrasta, btnGraph, btnHome;
     Intent intent;
-
     public String nome = "";
     public TextView t[] = new TextView[8];
     DrawerLayout drawer;
@@ -62,7 +64,7 @@ public class MedicaoParteDois extends AppCompatActivity
         t[6] = findViewById(R.id.txtNumeroMediaMes);
         t[7] = findViewById(R.id.txtNumeroMenorMes);
 
-        drawer =  findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
 
         btnArrasta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +100,7 @@ public class MedicaoParteDois extends AppCompatActivity
 
 
     }
+
     public void Btn(int i) {
 
         switch (i) {
@@ -117,8 +120,7 @@ public class MedicaoParteDois extends AppCompatActivity
     }
 
 
-
-    private class SincronismoHTTP extends AsyncTask<Void, Void, Void> {
+    final class SincronismoHTTP extends AsyncTask<Void, Void, Void> {
 
 
         StringRequest stringRequest;
@@ -174,6 +176,27 @@ public class MedicaoParteDois extends AppCompatActivity
 
 
                             } catch (JSONException e) {
+
+                                progressBar.setVisibility(View.INVISIBLE);
+
+                                AlertDialog.Builder a = new AlertDialog.Builder(MedicaoParteDois.this);
+                                a.setTitle("Dados não encontrados");
+                                a.setMessage("Por favor, tente mais tarde. Se o problema persistir, mande um email para: \n preiniciacaocientifica2018@gmail.com\"");
+
+                                a.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        for (int x = 0; x < t.length; x++) {
+                                            t[x].setText("-----");
+                                        }
+                                        Intent intnt = new Intent(MedicaoParteDois.this, MedicaoReal.class);
+                                        startActivity(intnt);
+                                    }
+
+                                });
+
+                                a.show();
+
                                 e.printStackTrace();
                             }
 
@@ -181,9 +204,24 @@ public class MedicaoParteDois extends AppCompatActivity
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    for (int x = 0; x < t.length; x++) {
-                        t[x].setText("Dados não encontrados");
-                    }
+                    progressBar.setVisibility(View.INVISIBLE);
+
+                    AlertDialog.Builder a = new AlertDialog.Builder(MedicaoParteDois.this);
+                    a.setTitle("Não está conectado à internet");
+                    a.setMessage("Verifique sua conexão com a internet");
+                    a.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            for (int x = 0; x < t.length; x++) {
+                                t[x].setText("-----");
+                            }
+                            Intent intnt = new Intent(MedicaoParteDois.this, MedicaoReal.class);
+                            startActivity(intnt);
+                        }
+                    });
+                    a.show();
+
+
                 }
             });
 
@@ -192,6 +230,7 @@ public class MedicaoParteDois extends AppCompatActivity
 
             return null;
         }
+
 
         @Override
         protected void onPostExecute(Void vd) {
@@ -202,7 +241,6 @@ public class MedicaoParteDois extends AppCompatActivity
 
 
     }
-
 
 
     @Override
@@ -267,6 +305,5 @@ public class MedicaoParteDois extends AppCompatActivity
         super.finish();
         overridePendingTransition(R.anim.vem, R.anim.sai);
     }
-
 
 }

@@ -313,7 +313,7 @@ public class SecondActivity extends AppCompatActivity
          queueid = downloadManager.enqueue(request);
 
         }else if (id == R.id.itemPDF) {
-            DownloadManager.Request request = new DownloadManager.Request(Uri.parse("https://drive.google.com/uc?authuser=0&id=1EyQoRi-BXbkP81yK_UO3r2BR7YEUwy1f&export=download"));
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse("https://drive.google.com/uc?authuser=0&id=1pU72mHoZMzA0kyYZuL12d7rzSlClp7Ga&export=download"));
             queueid = downloadManager.enqueue(request);
 
         }
