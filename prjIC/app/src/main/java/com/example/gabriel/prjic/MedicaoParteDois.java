@@ -194,7 +194,7 @@ public class MedicaoParteDois extends AppCompatActivity
                                     }
 
                                 });
-
+                                a.setCancelable(false);
                                 a.show();
 
                                 e.printStackTrace();
@@ -219,6 +219,7 @@ public class MedicaoParteDois extends AppCompatActivity
                             startActivity(intnt);
                         }
                     });
+                    a.setCancelable(false);
                     a.show();
 
 

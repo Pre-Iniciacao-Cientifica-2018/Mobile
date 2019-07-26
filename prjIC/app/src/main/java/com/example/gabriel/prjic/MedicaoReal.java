@@ -1,5 +1,7 @@
 package com.example.gabriel.prjic;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -34,7 +36,7 @@ public class MedicaoReal extends AppCompatActivity
     Intent intent;
     TextView txtNumPHP;
     DrawerLayout drawer;
-    Button btnAnalise,btnGrafico;
+    Button btnAnalise, btnGrafico;
 
 
     @Override
@@ -102,18 +104,42 @@ public class MedicaoReal extends AppCompatActivity
                     @Override
                     public void onResponse(String response) {
                         try {
-
                             JSONObject jsonObj = new JSONObject(response);
-                            txtNumPHP.setText(jsonObj.getJSONObject("data").getString("max-dia"));
+                            txtNumPHP.setText(jsonObj.getJSONObject("data").getString("tempo-real"));
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            AlertDialog.Builder a = new AlertDialog.Builder(MedicaoReal.this);
+                            a.setTitle("Dados não encontrados");
+                            a.setMessage("Por favor, tente mais tarde. Se o problema persistir, mande um email para: \n preiniciacaocientifica2018@gmail.com\"");
+                            a.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            a.setCancelable(false);
+                            a.show();
                         }
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                AlertDialog.Builder a = new AlertDialog.Builder(MedicaoReal.this);
+                a.setTitle("Dados não encontrados");
+                a.setMessage("Por favor, tente mais tarde. Se o problema persistir, mande um email para: \n preiniciacaocientifica2018@gmail.com\"");
 
+                a.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+
+                    }
+
+                });
+                a.setCancelable(false);
+                a.show();
             }
         });
 
@@ -203,6 +229,7 @@ public class MedicaoReal extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public void finish() {
         super.finish();
