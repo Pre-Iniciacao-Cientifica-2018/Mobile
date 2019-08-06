@@ -97,7 +97,7 @@ public class MedicaoReal extends AppCompatActivity
 
     public void getConc(View v) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://conco2.000webhostapp.com/tempo-real";
+        String url = "https://conco2.000webhostapp.com/all";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
