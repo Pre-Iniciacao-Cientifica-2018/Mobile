@@ -13,7 +13,8 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/logotrue"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".Contatos"
             android:label="@string/title_activity_contatos"

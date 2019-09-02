@@ -3,6 +3,8 @@ package com.example.gabriel.prjic;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -107,6 +109,7 @@ public class MedicaoReal extends AppCompatActivity
                             JSONObject jsonObj = new JSONObject(response);
                             txtNumPHP.setText(jsonObj.getJSONObject("data").getString("tempo-real"));
                         } catch (JSONException e) {
+                            try{
                             e.printStackTrace();
                             AlertDialog.Builder a = new AlertDialog.Builder(MedicaoReal.this);
                             a.setTitle("Dados não encontrados");
@@ -119,6 +122,7 @@ public class MedicaoReal extends AppCompatActivity
                             });
                             a.setCancelable(false);
                             a.show();
+                            }catch(Exception err){}
                         }
 
                     }
@@ -166,8 +170,14 @@ public class MedicaoReal extends AppCompatActivity
                 startActivity(intent);
                 break;
             case 4:
-                intent = new Intent(this, WebViewGraph.class);
-                startActivity(intent);
+                if((android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1)){
+                    intent = new Intent(this, WebViewGraph.class);
+                    startActivity(intent);
+                }
+                else{
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://conco2.000webhostapp.com/dia-semana-mes_graphs.php"));
+                    startActivity(intent);
+                }
                 break;
 
         }
