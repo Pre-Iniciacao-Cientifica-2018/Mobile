@@ -1,13 +1,11 @@
 package com.example.gabriel.prjic;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,18 +15,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,10 +30,10 @@ public class MedicaoParteDois extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ImageButton btnArrasta, btnGraph, btnHome;
     Intent intent;
-    public String nome = "";
+
     public TextView t[] = new TextView[8];
     DrawerLayout drawer;
-    public int i = 0, a = 0;
+
     ProgressBar progressBar;
 
 
@@ -86,13 +80,13 @@ public class MedicaoParteDois extends AppCompatActivity
         });
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -138,7 +132,7 @@ public class MedicaoParteDois extends AppCompatActivity
 
             queue = Volley.newRequestQueue(getApplicationContext());
 
-            stringRequest = new StringRequest(Request.Method.GET, "https://conco2.000webhostapp.com/all",
+            stringRequest = new StringRequest(Request.Method.GET, "http://conco2.tpn.usp.br/all",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -146,19 +140,20 @@ public class MedicaoParteDois extends AppCompatActivity
 
                                 JSONObject jsonObj = new JSONObject(response);
                                 for (int x = 0; x < t.length; x++) {
-                                    t[x].setText(jsonObj.getJSONObject("data").getDouble(x + "c") + " ppm");
+                                    double medicao = jsonObj.getJSONObject("data").getDouble(x + "c");
+                                    String text = medicao + "ppm";
+                                    t[x].setText(text);
 
-                                    if (jsonObj.getJSONObject("data").getDouble(x + "c") < 475) {
+                                    if (medicao < 475)
                                         t[x].setTextColor(Color.parseColor("#75ab5d"));
 
-
-                                    } else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 650)
+                                     else if (medicao < 650)
                                         t[x].setTextColor(Color.parseColor("#e3cb86"));
 
-                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 825)
+                                    else if (medicao < 825)
 
                                         t[x].setTextColor(Color.parseColor("#e7b886"));
-                                    else if (jsonObj.getJSONObject("data").getDouble(x + "c") < 1000)
+                                    else if (medicao < 1000)
 
                                         t[x].setTextColor(Color.parseColor("#c97979"));
                                     else
@@ -186,8 +181,8 @@ public class MedicaoParteDois extends AppCompatActivity
                                 a.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        for (int x = 0; x < t.length; x++) {
-                                            t[x].setText("-----");
+                                        for (TextView t : t){
+                                            t.setText("-----");
                                         }
                                         Intent intnt = new Intent(MedicaoParteDois.this, MedicaoReal.class);
                                         startActivity(intnt);
@@ -195,7 +190,12 @@ public class MedicaoParteDois extends AppCompatActivity
 
                                 });
                                 a.setCancelable(false);
-                                a.show();
+                                try {
+                                    a.show();
+                                } catch (Exception erro) {
+
+
+                                }
 
                                 e.printStackTrace();
                             }
@@ -212,16 +212,21 @@ public class MedicaoParteDois extends AppCompatActivity
                     a.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            for (int x = 0; x < t.length; x++) {
-                                t[x].setText("-----");
+//
+                            for (TextView t : t){
+                                t.setText("-----");
                             }
                             Intent intnt = new Intent(MedicaoParteDois.this, MedicaoReal.class);
                             startActivity(intnt);
+
                         }
                     });
                     a.setCancelable(false);
-                    a.show();
+                    try {
+                        a.show();
+                    } catch (Exception e) {
 
+                    }
 
                 }
             });
@@ -246,7 +251,7 @@ public class MedicaoParteDois extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -296,7 +301,7 @@ public class MedicaoParteDois extends AppCompatActivity
         }
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

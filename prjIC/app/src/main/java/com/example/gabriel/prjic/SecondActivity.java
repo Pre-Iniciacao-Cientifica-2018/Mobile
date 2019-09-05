@@ -1,32 +1,22 @@
 package com.example.gabriel.prjic;
 
-import android.app.Activity;
 import android.app.DownloadManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
@@ -39,15 +29,11 @@ public class SecondActivity extends AppCompatActivity
     DrawerLayout drawer;
 
     TextView txtTitulo;
-
-
     PDFView pdfTexto;
-    LinearLayout linear, linear2;
+    LinearLayout linear;
 
     private String[] titulos = new String[6];
-    int page = 0;
     Pages p = new Pages();
-    long queueid;
     int cap = 1;
     DownloadManager downloadManager;
 
@@ -57,17 +43,13 @@ public class SecondActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.vem, R.anim.sai);
         setContentView(R.layout.activity_second);
-        // overridePendingTransition(R.anim.vem,R.anim.sai);
-
-
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
-
         linear = findViewById(R.id.linear);
         txtTitulo = findViewById(R.id.lblTitulo);
-        pdfTexto = (PDFView) findViewById(R.id.pdfTexto);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        pdfTexto = findViewById(R.id.pdfTexto);
+        drawer = findViewById(R.id.drawer_layout);
         btnArrasta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +68,6 @@ public class SecondActivity extends AppCompatActivity
                 Btn(2);
             }
         });
-
         titulos[0] = getString(R.string.cap1);
         titulos[1] = getString(R.string.cap2);
         titulos[2] = getString(R.string.cap3);
@@ -97,33 +78,28 @@ public class SecondActivity extends AppCompatActivity
         pdfTexto.fromAsset("text.pdf").defaultPage(p.getPages()).load();
         //cap = pdfTexto.getCurrentPage();
 
-        if(p.getPages() >= 122){
+        if (p.getPages() >= 122) {
             txtTitulo.setText(titulos[5]);
-        }
-        else if(p.getPages() >= 81){
+        } else if (p.getPages() >= 81) {
             txtTitulo.setText(titulos[4]);
-        }
-        else if(p.getPages() >= 28){
+        } else if (p.getPages() >= 28) {
             txtTitulo.setText(titulos[3]);
-        }
-        else if(p.getPages() >= 15){
+        } else if (p.getPages() >= 15) {
             txtTitulo.setText(titulos[2]);
-        }
-        else if(p.getPages() >= 9){
+        } else if (p.getPages() >= 9) {
             txtTitulo.setText(titulos[1]);
-        }
-        else if(p.getPages() <= 8){
+        } else if (p.getPages() <= 8) {
             txtTitulo.setText(titulos[0]);
         }
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         pdfTexto.zoomTo(1);
         pdfTexto.setMinZoom(1);
@@ -159,18 +135,7 @@ public class SecondActivity extends AppCompatActivity
 
     }
 
-    public void MudaTxt(int i) {
-        cap = cap + i;
-        if (cap > 4)
-            cap = 1;
-        if (cap < 1)
-            cap = 1;
 
-        //txtTitulo.setText(titulos[cap - 1]);
-        pdfTexto.fromAsset("text.pdf").defaultPage(cap).load();
-
-
-    }
 
 
     @Override
@@ -309,16 +274,16 @@ public class SecondActivity extends AppCompatActivity
             startActivity(new Intent(getApplicationContext(), Contatos.class));
         } else if (id == R.id.itemEpub) {
 
-         DownloadManager.Request request = new DownloadManager.Request(Uri.parse("https://drive.google.com/uc?authuser=0&id=1EyQoRi-BXbkP81yK_UO3r2BR7YEUwy1f&export=download"));
-         queueid = downloadManager.enqueue(request);
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse("https://drive.google.com/uc?authuser=0&id=1EyQoRi-BXbkP81yK_UO3r2BR7YEUwy1f&export=download"));
+            downloadManager.enqueue(request);
 
-        }else if (id == R.id.itemPDF) {
-            DownloadManager.Request request = new DownloadManager.Request(Uri.parse("https://drive.google.com/uc?authuser=0&id=1pU72mHoZMzA0kyYZuL12d7rzSlClp7Ga&export=download"));
-            queueid = downloadManager.enqueue(request);
+        } else if (id == R.id.itemPDF) {
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/ebook.pdf"));
+            downloadManager.enqueue(request);
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -343,22 +308,17 @@ public class SecondActivity extends AppCompatActivity
 
         // if(muda != cap)
         //    setPage(cap);
-        if(cap >= 122){
+        if (cap >= 122) {
             txtTitulo.setText(titulos[5]);
-        }
-        else if(cap >= 81){
+        } else if (cap >= 81) {
             txtTitulo.setText(titulos[4]);
-        }
-        else if(cap >= 28){
+        } else if (cap >= 28) {
             txtTitulo.setText(titulos[3]);
-        }
-        else if(cap >= 15){
+        } else if (cap >= 15) {
             txtTitulo.setText(titulos[2]);
-        }
-        else if(cap >= 9){
+        } else if (cap >= 9) {
             txtTitulo.setText(titulos[1]);
-        }
-        else if(cap <= 8){
+        } else  {
             txtTitulo.setText(titulos[0]);
         }
 

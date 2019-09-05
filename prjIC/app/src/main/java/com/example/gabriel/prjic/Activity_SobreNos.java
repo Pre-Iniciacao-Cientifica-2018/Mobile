@@ -67,6 +67,7 @@ public class Activity_SobreNos extends AppCompatActivity
             }
         });
     }
+
     public void Btn(int i) {
         Intent intent;
 
@@ -144,6 +145,7 @@ public class Activity_SobreNos extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public void finish() {
         super.finish();

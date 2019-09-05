@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/parteum"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MedicaoReal"
-    tools:showIn="@layout/app_bar_medicao_real"
-    android:background="@drawable/parteum">
+    tools:showIn="@layout/app_bar_medicao_real">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -66,11 +66,11 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="@font/lemon"
         android:text="000.00"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="30dp"
-        android:fontFamily="@font/lemon"
 
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,7 +137,7 @@
 
     <Button
 
-       android:id="@+id/btnAtualiza"
+        android:id="@+id/btnAtualiza"
         android:layout_width="363dp"
         android:layout_height="94dp"
 
@@ -149,7 +149,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.726" />
-
 
 
 </android.support.constraint.ConstraintLayout>

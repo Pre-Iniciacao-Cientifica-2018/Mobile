@@ -1,6 +1,6 @@
 package com.example.gabriel.prjic;
 
-public class Pages{
+public class Pages {
     public int getPages() {
         return pages;
     }

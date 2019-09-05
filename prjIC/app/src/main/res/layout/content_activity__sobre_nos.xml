@@ -9,7 +9,6 @@
     tools:showIn="@layout/app_bar_activity__sobre_nos">
 
 
-
     <TextView
         android:id="@+id/lblTituloSobreNos"
         android:layout_width="match_parent"
@@ -18,8 +17,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Sobre Nós"
         android:fontFamily="@font/mont"
+        android:text="Sobre Nós"
         android:textAlignment="center"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -28,7 +27,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
-
 
 
     <LinearLayout
@@ -77,7 +75,6 @@
             tools:layout_editor_absoluteY="457dp" />
 
 
-
         <ImageButton
             android:id="@+id/btnArrasta"
             android:layout_width="wrap_content"
@@ -101,10 +98,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/montb"
-        android:padding="15dp"
-        android:textSize="13dp"
-        android:text="      O projeto ConCO2 é resultado de um trabalho de pré-inciação-científica idealizado pelo professor Bernardo Luis Rodrigues de Andrade, da POLI-USP, desenvolvido por alunos da Escola Técnica Estadual de São Paulo (ETESP), sob a orientação dos professores......., tendo sido iniciado em setembro de 2018 e desenvolvido ao longo de 1 ano. O principal objetivo do projeto é facilitar o acesso a dados e informações sobre a emissão de gases de efeito estufa, principalmente o CO2, para a população geral. Para isso foi desenvolvido um site, um e-book e uma estação de medição de CO2, colocada na Raia Olímpica da USP (Cidade Universitária) na Marginal Pinheiros."
         android:justificationMode="inter_word"
+        android:padding="15dp"
+        android:text="      O projeto ConCO2 é resultado de um trabalho de pré-inciação-científica idealizado pelo professor Bernardo Luis Rodrigues de Andrade, da POLI-USP, desenvolvido por alunos da Escola Técnica Estadual de São Paulo (ETESP), sob a orientação dos professores......., tendo sido iniciado em setembro de 2018 e desenvolvido ao longo de 1 ano. O principal objetivo do projeto é facilitar o acesso a dados e informações sobre a emissão de gases de efeito estufa, principalmente o CO2, para a população geral. Para isso foi desenvolvido um site, um e-book e uma estação de medição de CO2, colocada na Raia Olímpica da USP (Cidade Universitária) na Marginal Pinheiros."
+        android:textSize="13dp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

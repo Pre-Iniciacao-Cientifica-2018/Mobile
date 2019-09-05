@@ -20,10 +20,11 @@ public class Splashscreen extends AppCompatActivity {
             }
         }, 2000);
     }
-    public void mostrarMainActivity(){
+
+    public void mostrarMainActivity() {
 
 
-        startActivity(new Intent(this,MainActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
 
     }
 }

@@ -3,15 +3,12 @@
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".SecondActivity"
-    tools:showIn="@layout/app_bar_second"
-    android:id="@+id/lay">
-
-
-
+    tools:showIn="@layout/app_bar_second">
 
 
     <LinearLayout
@@ -19,19 +16,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <TextView
 
             android:id="@+id/lblTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
             android:text="@string/cap1"
-            android:textColor="#ffffff"
             android:textAlignment="center"
+            android:textColor="#ffffff"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:background="@color/colorPrimaryDark"/>
-
-
+            android:textStyle="bold" />
 
 
         <com.github.barteksc.pdfviewer.PDFView
@@ -41,14 +37,6 @@
 
 
     </LinearLayout>
-
-
-
-
-
-
-
-
 
 
     <LinearLayout

@@ -29,25 +29,17 @@ public class MainActivity extends AppCompatActivity {
                 AbrirPag(1);
             }
         });
-
-
     }
 
     public void AbrirPag(int i) {
-
         Intent intent;
         if (i == 1) {
             intent = new Intent(getApplicationContext(), SecondActivity.class);
-
-
         } else {
             intent = new Intent(getApplicationContext(), MedicaoReal.class);
 
-
         }
         startActivity(intent);
-        // overridePendingTransition(R.anim.vem,R.anim.sai);
-
     }
 
     @Override

@@ -6,22 +6,17 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -53,7 +48,7 @@ public class MedicaoReal extends AppCompatActivity
         btnGrafico = findViewById(R.id.btnGrafico);
         btnAnalise = findViewById(R.id.btnAnalise);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer =  findViewById(R.id.drawer_layout);
         txtNumPHP = findViewById(R.id.txtNumeroPHP);
         btnArrasta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,19 +82,19 @@ public class MedicaoReal extends AppCompatActivity
         });
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     public void getConc(View v) {
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://conco2.000webhostapp.com/tempo-real";
+        String url = "http://conco2.tpn.usp.br/tempo-real";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -109,20 +104,24 @@ public class MedicaoReal extends AppCompatActivity
                             JSONObject jsonObj = new JSONObject(response);
                             txtNumPHP.setText(jsonObj.getJSONObject("data").getString("tempo-real"));
                         } catch (JSONException e) {
-                            try{
-                            e.printStackTrace();
-                            AlertDialog.Builder a = new AlertDialog.Builder(MedicaoReal.this);
-                            a.setTitle("Dados não encontrados");
-                            a.setMessage("Por favor, tente mais tarde. Se o problema persistir, mande um email para: \n preiniciacaocientifica2018@gmail.com\"");
-                            a.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                            try {
+                                e.printStackTrace();
+                                AlertDialog.Builder a = new AlertDialog.Builder(MedicaoReal.this);
+                                a.setTitle("Dados não encontrados");
+                                a.setMessage("Por favor, tente mais tarde. Se o problema persistir, mande um email para: \n preiniciacaocientifica2018@gmail.com\"");
+                                a.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
+                                    }
+                                });
+                                a.setCancelable(false);
+                                try {
+                                    a.show();
+                                } catch (Exception erro) {
                                 }
-                            });
-                            a.setCancelable(false);
-                            a.show();
-                            }catch(Exception err){}
+                            } catch (Exception err) {
+                            }
                         }
 
                     }
@@ -136,7 +135,6 @@ public class MedicaoReal extends AppCompatActivity
                 a.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
 
 
                     }
@@ -170,12 +168,11 @@ public class MedicaoReal extends AppCompatActivity
                 startActivity(intent);
                 break;
             case 4:
-                if((android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1)){
+                if ((android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1)) {
                     intent = new Intent(this, WebViewGraph.class);
                     startActivity(intent);
-                }
-                else{
-                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://conco2.000webhostapp.com/dia-semana-mes_graphs.php"));
+                } else {
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://conco2.tpn.usp.br/dia-semana-mes_graphs.php"));
                     startActivity(intent);
                 }
                 break;
@@ -186,7 +183,7 @@ public class MedicaoReal extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -235,7 +232,7 @@ public class MedicaoReal extends AppCompatActivity
         }
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

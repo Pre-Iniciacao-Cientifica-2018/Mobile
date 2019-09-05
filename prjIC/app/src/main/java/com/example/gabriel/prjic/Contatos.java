@@ -18,8 +18,9 @@ import android.widget.ImageButton;
 
 public class Contatos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
- ImageButton btnArrasta, btnHome, btnGraph, btnLivro;
- DrawerLayout drawer;
+    ImageButton btnArrasta, btnHome, btnGraph, btnLivro;
+    DrawerLayout drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class Contatos extends AppCompatActivity
         btnArrasta = findViewById(R.id.btnArrasta);
 
 
-       drawer= findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -64,6 +65,7 @@ public class Contatos extends AppCompatActivity
         });
         navigationView.setNavigationItemSelectedListener(this);
     }
+
     public void Btn(int i) {
         Intent intent;
 
@@ -142,6 +144,7 @@ public class Contatos extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public void finish() {
         super.finish();

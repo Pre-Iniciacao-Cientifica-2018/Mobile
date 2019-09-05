@@ -2,8 +2,6 @@ package com.example.gabriel.prjic;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
@@ -19,11 +17,10 @@ public class WebViewGraph extends AppCompatActivity {
 
         setContentView(R.layout.graph_webview);
 
-        mWebView = (WebView) findViewById(R.id.webview);
+        mWebView =  findViewById(R.id.webview);
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        mWebView.loadUrl("http://conco2.000webhostapp.com/dia-semana-mes_graphs.php");
-
+        mWebView.loadUrl("http://conco2.tpn.usp.br/dia-semana-mes_graphs.php");
 
 
     }
