@@ -102,7 +102,23 @@ public class MedicaoReal extends AppCompatActivity
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObj = new JSONObject(response);
-                            txtNumPHP.setText(jsonObj.getJSONObject("data").getString("tempo-real"));
+                            double conc = jsonObj.getJSONObject("data").getDouble("tempo-real");
+                            if(conc>0)
+                            txtNumPHP.setText(conc + "");
+                            else{ AlertDialog.Builder a = new AlertDialog.Builder(MedicaoReal.this);
+                                a.setTitle("Dados não encontrados");
+                                a.setMessage("Por favor, tente mais tarde. Se o problema persistir, mande um email para: \n preiniciacaocientifica2018@gmail.com\"");
+                                a.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                try {
+                                    a.show();
+                                } catch (Exception erro) {
+                                }}
+
                         } catch (JSONException e) {
                             try {
                                 e.printStackTrace();

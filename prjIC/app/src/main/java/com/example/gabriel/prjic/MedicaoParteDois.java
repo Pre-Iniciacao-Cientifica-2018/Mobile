@@ -141,34 +141,41 @@ public class MedicaoParteDois extends AppCompatActivity
                                 JSONObject jsonObj = new JSONObject(response);
                                 for (int x = 0; x < t.length; x++) {
                                     double medicao = jsonObj.getJSONObject("data").getDouble(x + "c");
-                                    String text = medicao + "ppm";
-                                    t[x].setText(text);
+                                    if (medicao  > 0) {
+                                        String text = medicao + "ppm";
+                                        t[x].setText(text);
 
-                                    if (medicao < 475)
-                                        t[x].setTextColor(Color.parseColor("#75ab5d"));
+                                        if (medicao < 475)
+                                            t[x].setTextColor(Color.parseColor("#75ab5d"));
 
-                                     else if (medicao < 650)
-                                        t[x].setTextColor(Color.parseColor("#e3cb86"));
+                                        else if (medicao < 650)
+                                            t[x].setTextColor(Color.parseColor("#e3cb86"));
 
-                                    else if (medicao < 825)
+                                        else if (medicao < 825)
 
-                                        t[x].setTextColor(Color.parseColor("#e7b886"));
-                                    else if (medicao < 1000)
+                                            t[x].setTextColor(Color.parseColor("#e7b886"));
+                                        else if (medicao < 1000)
 
-                                        t[x].setTextColor(Color.parseColor("#c97979"));
-                                    else
-                                        t[x].setTextColor(Color.parseColor("#a791de"));
+                                            t[x].setTextColor(Color.parseColor("#c97979"));
+                                        else
+                                            t[x].setTextColor(Color.parseColor("#a791de"));
 
-                                    if (t[x].getText().equals("ppm")) {
+                                        if (t[x].getText().equals("ppm")) {
 
-                                        progressBar.setVisibility(View.VISIBLE);
+                                            progressBar.setVisibility(View.VISIBLE);
+
+                                        }
+                                        progressBar.setVisibility(View.INVISIBLE);
+
+
+                                    }else{
+                                        progressBar.setVisibility(View.INVISIBLE);
+
+                                        t[x].setText("000.0ppm");
+
 
                                     }
-                                    progressBar.setVisibility(View.INVISIBLE);
-
-
                                 }
-
 
                             } catch (JSONException e) {
 
