@@ -138,6 +138,8 @@ public class Contatos extends AppCompatActivity
 
         } else if (id == R.id.itemLivro) {
             startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+        }else if (id == R.id.itemMedicaoReal) {
+            startActivity(new Intent(getApplicationContext(), MedicaoReal.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

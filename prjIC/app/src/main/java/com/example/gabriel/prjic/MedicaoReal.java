@@ -245,6 +245,8 @@ public class MedicaoReal extends AppCompatActivity
             startActivity(new Intent(getApplicationContext(), Activity_SobreNos.class));
         } else if (id == R.id.itemLivro) {
             startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+        }else if (id == R.id.itemMedicaoReal) {
+            startActivity(new Intent(getApplicationContext(), MedicaoReal.class));
         }
 
 

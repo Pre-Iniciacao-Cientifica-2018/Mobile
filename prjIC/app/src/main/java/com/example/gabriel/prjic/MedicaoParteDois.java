@@ -305,6 +305,8 @@ public class MedicaoParteDois extends AppCompatActivity
 
         } else if (id == R.id.itemLivro) {
             startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+        }else if (id == R.id.itemMedicaoReal) {
+            startActivity(new Intent(getApplicationContext(), MedicaoReal.class));
         }
 
 

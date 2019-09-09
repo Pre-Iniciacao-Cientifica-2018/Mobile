@@ -14,6 +14,10 @@
 
             android:title="Livro Digital" />
         <item
+            android:id="@+id/itemMedicaoReal"
+
+            android:title="Medição Real" />
+        <item
             android:id="@+id/itemSobre"
 
             android:title="Sobre" />
