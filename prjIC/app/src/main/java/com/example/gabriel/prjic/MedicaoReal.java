@@ -176,7 +176,7 @@ public class MedicaoReal extends AppCompatActivity
                 drawer.openDrawer(GravityCompat.START);
                 break;
             case 2:
-                intent = new Intent(this, SecondActivity.class);
+                intent = new Intent(this, LivroDigital.class);
                 startActivity(intent);
                 break;
             case 3:
@@ -242,9 +242,11 @@ public class MedicaoReal extends AppCompatActivity
         } else if (id == R.id.itemContato) {
             startActivity(new Intent(getApplicationContext(), Contatos.class));
         } else if (id == R.id.itemSobre) {
-            startActivity(new Intent(getApplicationContext(), Activity_SobreNos.class));
+            startActivity(new Intent(getApplicationContext(), SobreNos.class));
         } else if (id == R.id.itemLivro) {
-            startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+            startActivity(new Intent(getApplicationContext(), LivroDigital.class));
+        }else if (id == R.id.itemMedicaoReal) {
+            startActivity(new Intent(getApplicationContext(), MedicaoReal.class));
         }
 
 

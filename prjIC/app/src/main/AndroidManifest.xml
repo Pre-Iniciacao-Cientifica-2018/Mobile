@@ -3,8 +3,8 @@
     package="com.example.gabriel.prjic">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.permission.gts"/>
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -20,7 +20,7 @@
             android:label="@string/title_activity_contatos"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".Activity_SobreNos"
+            android:name=".SobreNos"
             android:label="@string/title_activity__sobre_nos"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -30,7 +30,7 @@
             android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SecondActivity"
+            android:name=".LivroDigital"
             android:label="@string/title_activity_second"
             android:theme="@style/AppTheme" />
         <activity

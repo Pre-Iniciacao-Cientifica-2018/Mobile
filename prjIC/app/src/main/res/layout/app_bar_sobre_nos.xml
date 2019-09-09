@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity_SobreNos">
+    tools:context=".SobreNos">
 
-    <include layout="@layout/content_activity__sobre_nos" />
+    <include layout="@layout/content_sobre_nos" />
 
 </android.support.design.widget.CoordinatorLayout>
