@@ -14,10 +14,6 @@
 
             android:title="Livro Digital" />
         <item
-            android:id="@+id/itemMedicaoReal"
-
-            android:title="Medição em Tempo real" />
-        <item
             android:id="@+id/itemSobre"
 
             android:title="Sobre" />

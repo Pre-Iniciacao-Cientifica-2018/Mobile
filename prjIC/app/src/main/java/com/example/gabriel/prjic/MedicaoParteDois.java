@@ -106,7 +106,7 @@ public class MedicaoParteDois extends AppCompatActivity
                 drawer.openDrawer(GravityCompat.START);
                 break;
             case 2:
-                intent = new Intent(this, LivroDigital.class);
+                intent = new Intent(this, SecondActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -301,10 +301,10 @@ public class MedicaoParteDois extends AppCompatActivity
         } else if (id == R.id.itemContato) {
             startActivity(new Intent(getApplicationContext(), Contatos.class));
         } else if (id == R.id.itemSobre) {
-            startActivity(new Intent(getApplicationContext(), SobreNos.class));
+            startActivity(new Intent(getApplicationContext(), Activity_SobreNos.class));
 
         } else if (id == R.id.itemLivro) {
-            startActivity(new Intent(getApplicationContext(), LivroDigital.class));
+            startActivity(new Intent(getApplicationContext(), SecondActivity.class));
         }
 
 
