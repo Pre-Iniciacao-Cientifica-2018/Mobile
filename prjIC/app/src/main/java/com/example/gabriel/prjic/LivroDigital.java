@@ -389,8 +389,8 @@ public class LivroDigital extends AppCompatActivity
 
                 downloadID = downloadManager.enqueue(request);// enqueue puts the download request in the queue. }
             } else {
-                request = new DownloadManager.Request(Uri.parse("http://speedtest.ftp.otenet.gr/files/test10Mb.db"))
-                        .setTitle("Dummy File")// Title of the Download Notification
+                request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/" + nomeArquivo))
+                        .setTitle(nomeArquivo)// Title of the Download Notification
                         .setDescription("Downloading")// Description of the Download Notification
                         .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)// Visibility of the download Notification
                         .setDestinationUri(Uri.fromFile(file))// Uri of the destination file
