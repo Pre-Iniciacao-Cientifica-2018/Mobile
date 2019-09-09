@@ -1,26 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.gabriel.prjic">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.permission.gts"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/logotrue"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/logotrue"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            >
-
-        </activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+        <activity
+            android:name=".Contatos"
+            android:label="@string/title_activity_contatos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activity_SobreNos"
+            android:label="@string/title_activity__sobre_nos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".WebViewGraph"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SecondActivity"
             android:label="@string/title_activity_second"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Splashscreen"
-            android:screenOrientation="portrait"
-            >
+        <activity
+            android:name=".Splashscreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,8 +46,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".menuebook"
-            android:label="@string/title_activity_menuebook"></activity>
+            android:name=".MedicaoReal"
+            android:label="@string/title_activity_medicao_real"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MedicaoParteDois"
+            android:label="@string/title_activity_medicao_parte_dois"
+            android:parentActivityName=".MedicaoReal"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:screenOrientation="portrait"
+                android:theme="@style/AppTheme"
+                android:value="com.example.gabriel.prjic.MedicaoReal" />
+        </activity>
     </application>
 
 </manifest>

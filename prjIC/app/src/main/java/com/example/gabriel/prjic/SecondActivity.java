@@ -1,43 +1,78 @@
 package com.example.gabriel.prjic;
 
+import android.Manifest;
+import android.app.DownloadManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
-
-import android.support.constraint.ConstraintLayout;
+import android.os.Environment;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.github.barteksc.pdfviewer.PDFView;
+
+import java.io.File;
 
 public class SecondActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     Intent intent;
     ImageButton btnArrasta, btnGraph, btnHome;
-    private LinearLayout lay = null;
-    private ImageView img = null;
-    private ImageView img1 = null;
+
+
     DrawerLayout drawer;
-    //private float x,y;
+
+    TextView txtTitulo;
+    PDFView pdfTexto;
+    LinearLayout linear;
+String nomeArquivo;
+    private String[] titulos = new String[6];
+    Pages p = new Pages();
+    int cap = 1;
+    DownloadManager downloadManager;
+    private long downloadID;
+
+    private BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //Fetching the download id received with the broadcast
+            long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+            //Checking if the received broadcast is for our enqueued download by matching download id
+            if (downloadID == id) {
+                Toast.makeText(SecondActivity.this, "Download Completed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.vem, R.anim.sai);
         setContentView(R.layout.activity_second);
         btnHome = findViewById(R.id.btnHome);
         btnArrasta = findViewById(R.id.btnArrasta);
         btnGraph = findViewById(R.id.btnGraph);
-        drawer  = (DrawerLayout) findViewById(R.id.drawer_layout);
+        linear = findViewById(R.id.linear);
+        txtTitulo = findViewById(R.id.lblTitulo);
+        pdfTexto = findViewById(R.id.pdfTexto);
+        drawer = findViewById(R.id.drawer_layout);
         btnArrasta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,43 +85,59 @@ public class SecondActivity extends AppCompatActivity
                 Btn(0);
             }
         });
+        btnGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Btn(2);
+            }
+        });
+        titulos[0] = getString(R.string.cap1);
+        titulos[1] = getString(R.string.cap2);
+        titulos[2] = getString(R.string.cap3);
+        titulos[3] = getString(R.string.cap4);
+        titulos[4] = getString(R.string.cap5);
+        titulos[5] = getString(R.string.cap6);
+
+        pdfTexto.fromAsset("text.pdf").defaultPage(p.getPages()).load();
+        //cap = pdfTexto.getCurrentPage();
+
+        if (p.getPages() >= 122) {
+            txtTitulo.setText(titulos[5]);
+        } else if (p.getPages() >= 81) {
+            txtTitulo.setText(titulos[4]);
+        } else if (p.getPages() >= 28) {
+            txtTitulo.setText(titulos[3]);
+        } else if (p.getPages() >= 15) {
+            txtTitulo.setText(titulos[2]);
+        } else if (p.getPages() >= 9) {
+            txtTitulo.setText(titulos[1]);
+        } else if (p.getPages() <= 8) {
+            txtTitulo.setText(titulos[0]);
+        }
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        pdfTexto.zoomTo(1);
+        pdfTexto.setMinZoom(1);
+        pdfTexto.setMidZoom(2);
 
 
-        lay = (LinearLayout) findViewById(R.id.linear);
-        img = (ImageView) findViewById(R.id.imageView5);
-        img1 = (ImageView) findViewById(R.id.imageView9);
-        lay.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        //    x = event.getX();
-                        //    y = event.getY(); Um dia pode ser util
-                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                            if (img.getVisibility() == View.VISIBLE && img1.getVisibility() == View.VISIBLE) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            pdfTexto.zoomTo(3);
+            pdfTexto.setMinZoom(3);
+            pdfTexto.setMidZoom(3.75f);
+        }
 
-                                img.setVisibility(View.INVISIBLE);
-                                img1.setVisibility(View.INVISIBLE);
-                            } else {
-                                img.setVisibility(View.VISIBLE);
-                                img1.setVisibility(View.VISIBLE);
-                            }
 
-                        }
-
-                return true;
-            }
-
-        });
     }
+
 
     public void Btn(int i) {
 
@@ -97,15 +148,17 @@ public class SecondActivity extends AppCompatActivity
                 break;
             case 1:
                 drawer.openDrawer(GravityCompat.START);
-            break;
+                break;
             case 2:
-                intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, MedicaoReal.class);
                 startActivity(intent);
                 break;
 
         }
 
     }
+
+
 
 
     @Override
@@ -115,6 +168,7 @@ public class SecondActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            overridePendingTransition(R.anim.back_vem, R.anim.back_sai);
         }
     }
 
@@ -143,28 +197,229 @@ public class SecondActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+        downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Intent intent;
         if (id == R.id.itemCap1) {
-            // Handle the camera action
+
+
+            cap = 1;
+            txtTitulo.setText(R.string.cap1);
+            pdfTexto.fromAsset("text.pdf").defaultPage(6).load();
+
+            p.setPages(6);
+            pdfTexto.zoomTo(1);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                pdfTexto.zoomTo(3);
+
+            }
+
         } else if (id == R.id.itemCap2) {
+
+            cap = 2;
+            txtTitulo.setText(R.string.cap2);
+            pdfTexto.fromAsset("text.pdf").defaultPage(9).load();
+            p.setPages(9);
+            pdfTexto.zoomTo(1);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                pdfTexto.zoomTo(3);
+
+            }
 
         } else if (id == R.id.itemCap3) {
 
+
+            cap = 3;
+            txtTitulo.setText(R.string.cap3);
+            pdfTexto.fromAsset("text.pdf").defaultPage(15).load();
+            p.setPages(15);
+            pdfTexto.zoomTo(1);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                pdfTexto.zoomTo(3);
+
+            }
+
         } else if (id == R.id.itemCap4) {
 
-        } else if (id == R.id.itemInicio) {
 
+            cap = 4;
+            txtTitulo.setText(R.string.cap4);
+            pdfTexto.fromAsset("text.pdf").defaultPage(28).load();
+            p.setPages(28);
+            pdfTexto.zoomTo(1);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                pdfTexto.zoomTo(3);
+
+            }
+
+
+        } else if (id == R.id.itemCap5) {
+
+
+            cap = 5;
+            txtTitulo.setText(R.string.cap5);
+            pdfTexto.fromAsset("text.pdf").defaultPage(81).load();
+            p.setPages(81);
+            pdfTexto.zoomTo(1);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                pdfTexto.zoomTo(3);
+
+            }
+
+
+        } else if (id == R.id.itemCap6) {
+
+
+            cap = 6;
+            txtTitulo.setText(R.string.cap6);
+            pdfTexto.fromAsset("text.pdf").defaultPage(122).load();
+            p.setPages(122);
+            pdfTexto.zoomTo(1);
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                pdfTexto.zoomTo(3);
+
+            }
+
+        } else if (id == R.id.itemInicio) {
             intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.itemMedReal) {
+            intent = new Intent(this, MedicaoReal.class);
+            startActivity(intent);
+        } else if (id == R.id.itemSobre) {
 
+            startActivity(new Intent(getApplicationContext(), Activity_SobreNos.class));
+        } else if (id == R.id.itemContato) {
+
+            startActivity(new Intent(getApplicationContext(), Contatos.class));
+        }  else if (id == R.id.itemEpub) {
+
+            nomeArquivo = "Ebook.epub";
+            registerReceiver(onDownloadComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            if (ContextCompat.checkSelfPermission(SecondActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(SecondActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            } else {
+
+                beginDownload();
+
+            }
+
+        } else if (id == R.id.itemPDF) {
+            nomeArquivo = "ebook.pdf";
+            registerReceiver(onDownloadComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+            if (ContextCompat.checkSelfPermission(SecondActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(SecondActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            } else {
+
+                beginDownload();
+
+            }
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.vem, R.anim.sai);
+    }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        //int muda = cap;
+
+        cap = pdfTexto.getCurrentPage();
+        // if(cap == 6){
+
+        //    Toast.makeText(this, "page: "+ cap, Toast.LENGTH_LONG).show();
+        //    setPage(cap);
+        // }
+
+        // if(muda != cap)
+        //    setPage(cap);
+        if (cap >= 122) {
+            txtTitulo.setText(titulos[5]);
+        } else if (cap >= 81) {
+            txtTitulo.setText(titulos[4]);
+        } else if (cap >= 28) {
+            txtTitulo.setText(titulos[3]);
+        } else if (cap >= 15) {
+            txtTitulo.setText(titulos[2]);
+        } else if (cap >= 9) {
+            txtTitulo.setText(titulos[1]);
+        } else  {
+            txtTitulo.setText(titulos[0]);
+        }
+
+        p.setPages(pdfTexto.getCurrentPage());
+
+
+        return super.dispatchTouchEvent(ev);
+    }
+    private void beginDownload() {
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "ebook.pdf");
+        /*
+        Create a DownloadManager.Request with all the information necessary to start the download
+         */
+
+
+        DownloadManager.Request request = null;// Set if download is allowed on roaming network
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/" + nomeArquivo))
+                    .setTitle(nomeArquivo)
+                    .setRequiresCharging(false)
+                    .setDescription("Downloading")
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+                    .setDestinationUri(Uri.fromFile(file))
+                    .setAllowedOverMetered(true)
+                    .setAllowedOverRoaming(true);
+            DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+
+            downloadID = downloadManager.enqueue(request);// enqueue puts the download request in the queue. }
+        } else {
+            request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/" + nomeArquivo))
+                    .setTitle(nomeArquivo)// Title of the Download Notification
+                    .setDescription("Downloading")// Description of the Download Notification
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)// Visibility of the download Notification
+                    .setDestinationUri(Uri.fromFile(file))// Uri of the destination file
+                    .setAllowedOverMetered(true)// Set if download is allowed on Mobile network
+                    .setAllowedOverRoaming(true);// Set if download is allowed on roaming network
+            DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+            downloadID = downloadManager.enqueue(request);// enqueue puts the download request in the queue.
+        }
+    }
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    beginDownload();
+                } else {
+
+
+                }
+                return;
+            }
+        }
+
+    }
+    @Override
+    public void onDestroy() {
+        try {
+            if (onDownloadComplete != null) {
+                unregisterReceiver(onDownloadComplete);
+            }
+        } catch (Exception e) {
+            Log.d("Erro", "Error");
+        }
+        super.onDestroy();
+    }
 }

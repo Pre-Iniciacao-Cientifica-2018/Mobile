@@ -8,36 +8,36 @@
         <item
             android:id="@+id/itemCap1"
 
-            android:title="I.  Pipipi" />
+            android:title="I.  INTRODUÇÃO" />
         <item
             android:id="@+id/itemCap2"
 
-            android:title="II. Popopo" />
+            android:title="II. ATMOSFERA" />
         <item
             android:id="@+id/itemCap3"
 
-            android:title="III.Qqqqqq" />
+            android:title="III. QUALIDADE DO AR" />
         <item
             android:id="@+id/itemCap4"
 
-            android:title="IV. Aaaaaa"
+            android:title="IV. DIÓXIDO DE CARBONO"
 
             />
         <item
-            android:id="@+id/itemblank"
+            android:id="@+id/itemCap5"
 
-            android:title=""
+            android:title="V. CIDADE DE SÃO PAULO"
 
             />
         <item
-            android:id="@+id/itemblannk"
+            android:id="@+id/itemCap6"
 
-            android:title=""
+            android:title="Referências Bibliográficas"
 
 
             />
-
     </group>
+
 
     <item android:title="">
         <menu>
@@ -54,10 +54,22 @@
 
                 android:title="Sobre" />
             <item
-                android:id="@+id/itemCtt"
+                android:id="@+id/itemContato"
 
                 android:title="Contato" />
         </menu>
     </item>
+    <item android:title="Faça o download do Ebook:">
+        <menu>
+            <item
+                android:id="@+id/itemEpub"
 
+                android:title=" para Epub" />
+            <item
+                android:id="@+id/itemPDF"
+
+                android:title="para PDF" />
+
+        </menu>
+    </item>
 </menu>

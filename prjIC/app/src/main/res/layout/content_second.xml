@@ -3,81 +3,90 @@
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".SecondActivity"
-    tools:showIn="@layout/app_bar_second"
-    android:id="@+id/lay">
+    tools:showIn="@layout/app_bar_second">
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="66dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/setadireita" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="66dp"
-        android:layout_height="39dp"
-        android:layout_marginEnd="284dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/setaesquerda" />
-
-    <ScrollView
-        android:id="@+id/scrollView2"
+    <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        android:orientation="vertical">
 
+        <TextView
 
-        <LinearLayout
-            android:id="@+id/linear"
+            android:id="@+id/lblTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Dióxido de Carbono"
-                android:textAlignment="center"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:text="@string/textao" />
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/cap1"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
 
-        </LinearLayout>
-
-    </ScrollView>
-
-
-
-
-        <include layout="@layout/menuebook"/>
+        <com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/pdfTexto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.github.barteksc.pdfviewer.PDFView>
 
 
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="-10dp"
+        android:background="#ffffff"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageButton
+            android:id="@+id/btnGraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_grafico"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="457dp" />
+
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_home"
+
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="457dp" />
+
+        <ImageButton
+            android:id="@+id/btnArrasta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:background="#00FFFFFF"
+            app:srcCompat="@drawable/ic_arrasta"
+            tools:layout_editor_absoluteX="54dp"
+            tools:layout_editor_absoluteY="457dp" />
+
+
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

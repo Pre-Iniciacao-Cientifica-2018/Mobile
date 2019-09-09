@@ -11,8 +11,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.vem, R.anim.sai);
         setContentView(R.layout.activity_main);
-
+        // overridePendingTransition(R.anim.vem,R.anim.sai);
 
         Button btnLivroDigital = findViewById(R.id.btnLivroDigital);
         Button btnConcReal = findViewById(R.id.btnConcReal);
@@ -28,19 +29,28 @@ public class MainActivity extends AppCompatActivity {
                 AbrirPag(1);
             }
         });
-
     }
 
-    public void AbrirPag(int i ){
+    public void AbrirPag(int i) {
         Intent intent;
-        if(i == 1){
-            intent = new Intent(getApplicationContext(),SecondActivity.class);
-
-        }else{
-            intent = new Intent(getApplicationContext(),SecondActivity.class);
+        if (i == 1) {
+            intent = new Intent(getApplicationContext(), SecondActivity.class);
+        } else {
+            intent = new Intent(getApplicationContext(), MedicaoReal.class);
 
         }
         startActivity(intent);
+    }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.vem, R.anim.sai);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.back_vem, R.anim.back_sai);
     }
 }
