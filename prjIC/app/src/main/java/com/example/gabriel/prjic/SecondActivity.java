@@ -13,7 +13,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -184,8 +184,8 @@ public class SecondActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
@@ -289,7 +289,7 @@ public class SecondActivity extends AppCompatActivity
         } else if (id == R.id.itemEpub) {
 
             registerReceiver(onDownloadComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-            nomeArquivo = "Ebook.epub";
+            nomeArquivo = "ebook.epub";
             beginDownload();
 
 
@@ -305,7 +305,7 @@ public class SecondActivity extends AppCompatActivity
         return true;
     }
 
-
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void beginDownload() {
         if (ContextCompat.checkSelfPermission(SecondActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -316,7 +316,7 @@ public class SecondActivity extends AppCompatActivity
             File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivo);
 
             DownloadManager downloadManagerr;
-            if ((Build.VERSION.SDK_INT <= Build.VERSION_CODES.N)) {
+            if ((android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.N)) {
             request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/" + nomeArquivo))
 
                         .setTitle("Ebook")// Title of the Download Notification
@@ -327,22 +327,21 @@ public class SecondActivity extends AppCompatActivity
                         .setAllowedOverRoaming(true);// Set if download is allowed on roaming network
                 downloadManagerr = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
             } else {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/"+nomeArquivo))
-                            .setTitle("Ebook")// Title of the Download Notification
-                            .setDescription("Downloading")// Description of the Download Notification
-                            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)// Visibility of the download Notification
-                            .setDestinationUri(Uri.fromFile(file))// Uri of the destination file
-                            .setRequiresCharging(false)
-                            .setAllowedOverMetered(true)// Set if download is allowed on Mobile network
-                            .setAllowedOverRoaming(true);// Set if download is allowed on roaming network
-                }
-                downloadManagerr = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/"+nomeArquivo))
+                        .setTitle("Ebook")// Title of the Download Notification
+                        .setDescription("Downloading")// Description of the Download Notification
+                        .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)// Visibility of the download Notification
+                        .setDestinationUri(Uri.fromFile(file))// Uri of the destination file
+                        .setRequiresCharging(false)
+                        .setAllowedOverMetered(true)// Set if download is allowed on Mobile network
+                        .setAllowedOverRoaming(true);// Set if download is allowed on roaming network
+               downloadManagerr = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
             }
 
             downloadID = downloadManagerr.enqueue(request);// enqueue puts the download request in the queue.
         }
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
