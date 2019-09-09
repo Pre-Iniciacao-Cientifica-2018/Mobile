@@ -1,22 +1,11 @@
 package com.example.gabriel.prjic;
 
-import android.Manifest;
 import android.app.DownloadManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -28,25 +17,21 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
 
-import java.io.File;
-
 public class SecondActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    DownloadManager.Request request = null;
     Intent intent;
     ImageButton btnArrasta, btnGraph, btnHome;
 
-    long downloadID;
+
     DrawerLayout drawer;
 
     TextView txtTitulo;
     PDFView pdfTexto;
     LinearLayout linear;
-    String nomeArquivo;
+
     private String[] titulos = new String[6];
     Pages p = new Pages();
     int cap = 1;
@@ -108,13 +93,13 @@ public class SecondActivity extends AppCompatActivity
         }
 
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         pdfTexto.zoomTo(1);
         pdfTexto.setMinZoom(1);
@@ -151,6 +136,8 @@ public class SecondActivity extends AppCompatActivity
     }
 
 
+
+
     @Override
     public void onBackPressed() {
 
@@ -184,7 +171,6 @@ public class SecondActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -288,97 +274,58 @@ public class SecondActivity extends AppCompatActivity
             startActivity(new Intent(getApplicationContext(), Contatos.class));
         } else if (id == R.id.itemEpub) {
 
-            registerReceiver(onDownloadComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-            nomeArquivo = "ebook.epub";
-            beginDownload();
-
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse("https://drive.google.com/uc?authuser=0&id=1EyQoRi-BXbkP81yK_UO3r2BR7YEUwy1f&export=download"));
+            downloadManager.enqueue(request);
 
         } else if (id == R.id.itemPDF) {
-            registerReceiver(onDownloadComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-            nomeArquivo = "ebook.pdf";
-            beginDownload();
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/ebook.pdf"));
+            downloadManager.enqueue(request);
+
         }
 
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void beginDownload() {
-        if (ContextCompat.checkSelfPermission(SecondActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(SecondActivity.this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-        } else {
-
-            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivo);
-
-            DownloadManager downloadManagerr;
-            if ((android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.N)) {
-            request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/" + nomeArquivo))
-
-                        .setTitle("Ebook")// Title of the Download Notification
-                        .setDescription("Downloading")// Description of the Download Notification
-                        .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)// Visibility of the download Notification
-                        .setDestinationUri(Uri.fromFile(file))// Uri of the destination file
-                        .setAllowedOverMetered(true)// Set if download is allowed on Mobile network
-                        .setAllowedOverRoaming(true);// Set if download is allowed on roaming network
-                downloadManagerr = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-            } else {
-                request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/"+nomeArquivo))
-                        .setTitle("Ebook")// Title of the Download Notification
-                        .setDescription("Downloading")// Description of the Download Notification
-                        .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)// Visibility of the download Notification
-                        .setDestinationUri(Uri.fromFile(file))// Uri of the destination file
-                        .setRequiresCharging(false)
-                        .setAllowedOverMetered(true)// Set if download is allowed on Mobile network
-                        .setAllowedOverRoaming(true);// Set if download is allowed on roaming network
-               downloadManagerr = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-            }
-
-            downloadID = downloadManagerr.enqueue(request);// enqueue puts the download request in the queue.
-        }
-    }
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                   beginDownload();
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-                return;
-            }
-
-            // other 'case' lines to check for other
-            // permissions this app might request.
-        }
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.vem, R.anim.sai);
     }
-    private BroadcastReceiver onDownloadComplete = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //Fetching the download id received with the broadcast
-            long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-            //Checking if the received broadcast is for our enqueued download by matching download id
-            if (downloadID == id) {
-                Toast.makeText(SecondActivity.this, "Download Completed", Toast.LENGTH_SHORT).show();
-        }
-        }
-    };
+
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        unregisterReceiver(onDownloadComplete);
-    }
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        //int muda = cap;
 
+        cap = pdfTexto.getCurrentPage();
+        // if(cap == 6){
+
+        //    Toast.makeText(this, "page: "+ cap, Toast.LENGTH_LONG).show();
+        //    setPage(cap);
+        // }
+
+        // if(muda != cap)
+        //    setPage(cap);
+        if (cap >= 122) {
+            txtTitulo.setText(titulos[5]);
+        } else if (cap >= 81) {
+            txtTitulo.setText(titulos[4]);
+        } else if (cap >= 28) {
+            txtTitulo.setText(titulos[3]);
+        } else if (cap >= 15) {
+            txtTitulo.setText(titulos[2]);
+        } else if (cap >= 9) {
+            txtTitulo.setText(titulos[1]);
+        } else  {
+            txtTitulo.setText(titulos[0]);
+        }
+
+        p.setPages(pdfTexto.getCurrentPage());
+
+
+        return super.dispatchTouchEvent(ev);
+    }
 
 }
