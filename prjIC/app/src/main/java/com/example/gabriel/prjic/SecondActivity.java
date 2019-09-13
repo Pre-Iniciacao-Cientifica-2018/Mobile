@@ -364,7 +364,7 @@ String nomeArquivo;
         return super.dispatchTouchEvent(ev);
     }
     private void beginDownload() {
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "ebook.pdf");
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), nomeArquivo);
         /*
         Create a DownloadManager.Request with all the information necessary to start the download
          */
@@ -385,12 +385,12 @@ String nomeArquivo;
             downloadID = downloadManager.enqueue(request);// enqueue puts the download request in the queue. }
         } else {
             request = new DownloadManager.Request(Uri.parse("http://conco2.tpn.usp.br/" + nomeArquivo))
-                    .setTitle(nomeArquivo)// Title of the Download Notification
-                    .setDescription("Downloading")// Description of the Download Notification
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)// Visibility of the download Notification
-                    .setDestinationUri(Uri.fromFile(file))// Uri of the destination file
-                    .setAllowedOverMetered(true)// Set if download is allowed on Mobile network
-                    .setAllowedOverRoaming(true);// Set if download is allowed on roaming network
+                    .setTitle(nomeArquivo)
+                    .setDescription("Downloading")
+                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+                    .setDestinationUri(Uri.fromFile(file))
+                    .setAllowedOverMetered(true)
+                    .setAllowedOverRoaming(true);
             DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
             downloadID = downloadManager.enqueue(request);// enqueue puts the download request in the queue.
         }
