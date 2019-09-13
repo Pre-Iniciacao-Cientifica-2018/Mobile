@@ -171,7 +171,7 @@ public class MedicaoParteDois extends AppCompatActivity
                                     }else{
                                         progressBar.setVisibility(View.INVISIBLE);
 
-                                        t[x].setText("000.0ppm");
+                                        t[x].setText("----");
 
 
                                     }
