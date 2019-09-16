@@ -159,7 +159,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montb"
             android:text="Camilla Rosa Freire" />
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Caroline Victoria" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -190,11 +194,7 @@
             android:fontFamily="@font/montb"
             android:text="Gustavo Palma" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montb"
-            android:text="Henry Castelli" />
+
 
     </LinearLayout>
 
@@ -211,6 +211,11 @@
         app:layout_constraintTop_toBottomOf="@+id/lblIntegrantes"
         app:layout_constraintVertical_bias="0.416">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montb"
+            android:text="Henry Castelli" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -259,10 +264,6 @@
             android:fontFamily="@font/montb"
             android:text="Stéfano Kenji" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montb"
-            android:text="" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
